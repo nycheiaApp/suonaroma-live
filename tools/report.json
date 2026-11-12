@@ -1,10 +1,10 @@
 {
- "eseguito_il": "2026-11-11T11:19:37+01:00",
+ "eseguito_il": "2026-11-12T18:25:09+01:00",
  "giorni_avanzo": 365,
- "locali_aggiornati": 14,
+ "locali_aggiornati": 16,
  "locali_totali": 24,
- "eventi_totali": 122,
- "eventi_passati_eliminati": 41,
+ "eventi_totali": 150,
+ "eventi_passati_eliminati": 4,
  "doppioni_fusi": 0,
  "dettaglio": [
   {
@@ -12,8 +12,8 @@
    "nome": "Alexanderplatz Jazz Club",
    "fonte": "html_wix",
    "stato": "ok",
-   "estratti": 7,
-   "rimossi_vecchi": 2
+   "estratti": 18,
+   "rimossi_vecchi": 6
   },
   {
    "id": 2,
@@ -21,7 +21,7 @@
    "fonte": "html_apm",
    "stato": "ok",
    "estratti": 16,
-   "rimossi_vecchi": 6
+   "rimossi_vecchi": 16
   },
   {
    "id": 3,
@@ -29,7 +29,7 @@
    "fonte": "html_cdj",
    "stato": "ok",
    "estratti": 35,
-   "rimossi_vecchi": 21
+   "rimossi_vecchi": 35
   },
   {
    "id": 4,
@@ -42,7 +42,7 @@
    "id": 5,
    "nome": "Fonclea",
    "fonte": null,
-   "stato": "sito ufficiale protetto da verifica anti-bot (challenge JavaScript)",
+   "stato": "fonte non disponibile (ical: 0 eventi; wp_json: saltato (non WordPress); jsonld: 0 eventi; html_testo: 0 eventi)",
    "estratti": 0
   },
   {
@@ -56,9 +56,10 @@
   {
    "id": 7,
    "nome": "Vinile",
-   "fonte": null,
-   "stato": "sito non raggiungibile (timeout (nessuna risposta entro 15s))",
-   "estratti": 0
+   "fonte": "html_vinile",
+   "stato": "ok",
+   "estratti": 4,
+   "rimossi_vecchi": 0
   },
   {
    "id": 8,
@@ -70,17 +71,18 @@
   {
    "id": 9,
    "nome": "CrossRoads Live Club",
-   "fonte": "html_songkick",
+   "fonte": "ical",
    "stato": "ok",
-   "estratti": 1,
+   "estratti": 16,
    "rimossi_vecchi": 1
   },
   {
    "id": 10,
    "nome": "Geronimo's Live Music Club",
-   "fonte": null,
-   "stato": "sito non raggiungibile (rete non raggiungibile)",
-   "estratti": 0
+   "fonte": "html_testo",
+   "stato": "ok",
+   "estratti": 1,
+   "rimossi_vecchi": 0
   },
   {
    "id": 11,
@@ -88,7 +90,7 @@
    "fonte": "html_romatoday",
    "stato": "ok",
    "estratti": 2,
-   "rimossi_vecchi": 1
+   "rimossi_vecchi": 2
   },
   {
    "id": 12,
@@ -96,7 +98,7 @@
    "fonte": "html_zero",
    "stato": "ok",
    "estratti": 7,
-   "rimossi_vecchi": 2
+   "rimossi_vecchi": 7
   },
   {
    "id": 13,
@@ -104,7 +106,7 @@
    "fonte": "html_zero",
    "stato": "ok",
    "estratti": 1,
-   "rimossi_vecchi": 0
+   "rimossi_vecchi": 1
   },
   {
    "id": 14,
@@ -132,16 +134,16 @@
    "nome": "Monk Club",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 9,
-   "rimossi_vecchi": 9
+   "estratti": 8,
+   "rimossi_vecchi": 8
   },
   {
    "id": 18,
    "nome": "Fanfulla 5/a",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 19,
-   "rimossi_vecchi": 19
+   "estratti": 18,
+   "rimossi_vecchi": 18
   },
   {
    "id": 19,
@@ -164,7 +166,7 @@
    "fonte": "html_zero",
    "stato": "ok",
    "estratti": 4,
-   "rimossi_vecchi": 3
+   "rimossi_vecchi": 4
   },
   {
    "id": 22,
@@ -178,7 +180,7 @@
    "id": 23,
    "nome": "L'Asino che Vola",
    "fonte": null,
-   "stato": "sito ufficiale protetto da verifica anti-bot (challenge JavaScript) · fonti alternative: html_zero: 0 eventi",
+   "stato": "fonte non disponibile (ical: 0 eventi; wp_json: 0 eventi; jsonld: 0 eventi; html_testo: 0 eventi; html_zero: 0 eventi)",
    "estratti": 0
   },
   {
@@ -186,8 +188,8 @@
    "nome": "Trenta Formiche",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 15,
-   "rimossi_vecchi": 15
+   "estratti": 14,
+   "rimossi_vecchi": 14
   }
  ]
 }
