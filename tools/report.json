@@ -1,0 +1,193 @@
+{
+ "eseguito_il": "2026-11-11T11:19:37+01:00",
+ "giorni_avanzo": 365,
+ "locali_aggiornati": 14,
+ "locali_totali": 24,
+ "eventi_totali": 122,
+ "eventi_passati_eliminati": 41,
+ "doppioni_fusi": 0,
+ "dettaglio": [
+  {
+   "id": 1,
+   "nome": "Alexanderplatz Jazz Club",
+   "fonte": "html_wix",
+   "stato": "ok",
+   "estratti": 7,
+   "rimossi_vecchi": 2
+  },
+  {
+   "id": 2,
+   "nome": "Auditorium Parco della Musica",
+   "fonte": "html_apm",
+   "stato": "ok",
+   "estratti": 16,
+   "rimossi_vecchi": 6
+  },
+  {
+   "id": 3,
+   "nome": "Casa del Jazz",
+   "fonte": "html_cdj",
+   "stato": "ok",
+   "estratti": 35,
+   "rimossi_vecchi": 21
+  },
+  {
+   "id": 4,
+   "nome": "Big Mama Blues Club",
+   "fonte": null,
+   "stato": "disattivato: bigmama.it non è più il sito del locale (oggi mostra un sito di formazione sanitaria EUPATI, verificato il 4/11/2026); il locale pubblica la programmazione solo su Facebook (@bigmamaroma), non leggibile senza login",
+   "estratti": 0
+  },
+  {
+   "id": 5,
+   "nome": "Fonclea",
+   "fonte": null,
+   "stato": "sito ufficiale protetto da verifica anti-bot (challenge JavaScript)",
+   "estratti": 0
+  },
+  {
+   "id": 6,
+   "nome": "Largo Venue",
+   "fonte": "html_zero",
+   "stato": "ok",
+   "estratti": 3,
+   "rimossi_vecchi": 3
+  },
+  {
+   "id": 7,
+   "nome": "Vinile",
+   "fonte": null,
+   "stato": "sito non raggiungibile (timeout (nessuna risposta entro 15s))",
+   "estratti": 0
+  },
+  {
+   "id": 8,
+   "nome": "Stazione Birra",
+   "fonte": null,
+   "stato": "fonte non disponibile (ical: 0 eventi; wp_json: saltato (non WordPress); jsonld: 0 eventi; html_testo: 0 eventi)",
+   "estratti": 0
+  },
+  {
+   "id": 9,
+   "nome": "CrossRoads Live Club",
+   "fonte": "html_songkick",
+   "stato": "ok",
+   "estratti": 1,
+   "rimossi_vecchi": 1
+  },
+  {
+   "id": 10,
+   "nome": "Geronimo's Live Music Club",
+   "fonte": null,
+   "stato": "sito non raggiungibile (rete non raggiungibile)",
+   "estratti": 0
+  },
+  {
+   "id": 11,
+   "nome": "Palazzo dello Sport (PalaEur)",
+   "fonte": "html_romatoday",
+   "stato": "ok",
+   "estratti": 2,
+   "rimossi_vecchi": 1
+  },
+  {
+   "id": 12,
+   "nome": "Alcazar Live",
+   "fonte": "html_zero",
+   "stato": "ok",
+   "estratti": 7,
+   "rimossi_vecchi": 2
+  },
+  {
+   "id": 13,
+   "nome": "Atlantico Live",
+   "fonte": "html_zero",
+   "stato": "ok",
+   "estratti": 1,
+   "rimossi_vecchi": 0
+  },
+  {
+   "id": 14,
+   "nome": "Argot",
+   "fonte": null,
+   "stato": "disattivato: nessun sito ufficiale: il locale è presente solo su Instagram (@argot.speakeasy); nessuna fonte alternativa leggibile (non è su zero.eu)",
+   "estratti": 0
+  },
+  {
+   "id": 15,
+   "nome": "Blackmarket Hall",
+   "fonte": null,
+   "stato": "fonte non disponibile (ical: 0 eventi; wp_json: 0 eventi; jsonld: 0 eventi; html_testo: 0 eventi)",
+   "estratti": 0
+  },
+  {
+   "id": 16,
+   "nome": "Lian Club",
+   "fonte": null,
+   "stato": "sito non raggiungibile (HTTP 500 (errore interno del server))",
+   "estratti": 0
+  },
+  {
+   "id": 17,
+   "nome": "Monk Club",
+   "fonte": "html_zero",
+   "stato": "ok",
+   "estratti": 9,
+   "rimossi_vecchi": 9
+  },
+  {
+   "id": 18,
+   "nome": "Fanfulla 5/a",
+   "fonte": "html_zero",
+   "stato": "ok",
+   "estratti": 19,
+   "rimossi_vecchi": 19
+  },
+  {
+   "id": 19,
+   "nome": "Al Muretto",
+   "fonte": null,
+   "stato": "fonte non disponibile (html_zero: 0 eventi)",
+   "estratti": 0
+  },
+  {
+   "id": 20,
+   "nome": "Traffic Live",
+   "fonte": "html_zero",
+   "stato": "ok",
+   "estratti": 1,
+   "rimossi_vecchi": 1
+  },
+  {
+   "id": 21,
+   "nome": "Wishlist Club",
+   "fonte": "html_zero",
+   "stato": "ok",
+   "estratti": 4,
+   "rimossi_vecchi": 3
+  },
+  {
+   "id": 22,
+   "nome": "Orion Club",
+   "fonte": "html_zero",
+   "stato": "ok",
+   "estratti": 2,
+   "rimossi_vecchi": 2
+  },
+  {
+   "id": 23,
+   "nome": "L'Asino che Vola",
+   "fonte": null,
+   "stato": "sito ufficiale protetto da verifica anti-bot (challenge JavaScript) · fonti alternative: html_zero: 0 eventi",
+   "estratti": 0
+  },
+  {
+   "id": 24,
+   "nome": "Trenta Formiche",
+   "fonte": "html_zero",
+   "stato": "ok",
+   "estratti": 15,
+   "rimossi_vecchi": 15
+  }
+ ]
+}
