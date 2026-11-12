@@ -1,0 +1,83 @@
+# Aggiorna gli eventi di SuonaRoma una volta al giorno: al primo run
+# delle 14:00 o successivo (ora italiana).
+#
+# Perché ogni 30 minuti? GitHub spesso ritarda i run programmati di
+# 15-60 minuti e a volte salta ore intere (visti run alle 23:32,
+# 04:16, 12:57 — mai nella finestra voluta). Con il cron ogni 30
+# minuti e un guard "dalle 14:00 in poi" l'aggiornamento giornaliero
+# arriva comunque; un controllo sul rapporto dello stesso giorno
+# evita doppi aggiornamenti. L'orario resta corretto anche al cambio
+# ora legale/solare (il cron di GitHub è in UTC, il guard usa
+# l'orologio di Roma).
+#
+# Avvio manuale (sempre eseguito, a qualsiasi ora): scheda Actions →
+# "Aggiorna eventi" → Run workflow.
+
+name: Aggiorna eventi
+
+on:
+  schedule:
+    - cron: '0,30 * * * *'       # ogni 30 minuti; il guard decide se eseguire
+  workflow_dispatch: {}          # avvio manuale
+
+permissions:
+  contents: write                # serve per il commit dei dati aggiornati
+
+concurrency:
+  group: aggiorna-eventi
+  cancel-in-progress: false
+
+jobs:
+  aggiorna:
+    # ubuntu-24.04 fissato esplicitamente: il tag ubuntu-latest sta migrando
+    # a Ubuntu 26 (avviso di GitHub, ott. 2026) e così l'ambiente resta stabile.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout del repository
+        uses: actions/checkout@v7   # v4 usa Node.js 20, in dismissione dai runner
+
+      - name: Setup Python
+        uses: actions/setup-python@v7   # idem: v5 usava Node.js 20
+        with:
+          python-version: '3.12'
+
+      - name: Aggiornamento dovuto (dopo le 14:00 a Roma, non già fatto oggi)?
+        id: orario
+        run: |
+          H=$(TZ=Europe/Rome date +%H)
+          OGGI=$(TZ=Europe/Rome date +%Y-%m-%d)
+          GIA=$(grep -qF "Eseguito il: **$OGGI" tools/report.md 2>/dev/null && echo sì || echo no)
+          echo "Ora italiana: ${H} — aggiornamento di oggi già eseguito: $GIA"
+          if [ "$H" -ge 14 ] && [ "$GIA" != "sì" ]; then
+            echo "esegui=sì" >> "$GITHUB_OUTPUT"
+          else
+            echo "esegui=no" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Nei run programmati l'estrazione parte al primo slot dalle 14:00
+      # (ora di Roma) che trova l'aggiornamento di oggi non ancora fatto;
+      # nei run manuali (workflow_dispatch) parte sempre, per i test.
+      - name: Estrazione eventi dai siti dei locali
+        if: steps.orario.outputs.esegui == 'sì' || github.event_name == 'workflow_dispatch'
+        run: python3 tools/aggiorna_eventi.py
+
+      - name: Riepilogo nell'esecuzione
+        if: steps.orario.outputs.esegui == 'sì' || github.event_name == 'workflow_dispatch'
+        run: |
+          if [ -f tools/report.md ]; then
+            cat tools/report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Commit e push (solo se i dati sono cambiati)
+        if: steps.orario.outputs.esegui == 'sì' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "suonaroma-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/eventi.json data/eventi.js data/meta.js tools/report.json tools/report.md
+          if git diff --cached --quiet; then
+            echo "Nessuna variazione: niente da committare."
+          else
+            git commit -m "Aggiornamento automatico eventi $(TZ=Europe/Rome date +'%d/%m/%Y')"
+            git push
+          fi
