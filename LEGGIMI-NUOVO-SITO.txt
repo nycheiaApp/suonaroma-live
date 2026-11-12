@@ -1,7 +1,6 @@
 ════════════════════════════════════════════════════════════
  SuonaRoma Live · singola pagina con layout "Roma Live Music"
- costruita sullo schema dati e sull'automazione di SuonaRoma v13
-════════════════════════════════════════════════════════════
+ ════════════════════════════════════════════════════════════
 
 COSA È
 
