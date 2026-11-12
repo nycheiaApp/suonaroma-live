@@ -1,0 +1,108 @@
+════════════════════════════════════════════════════════════
+ SuonaRoma Live · singola pagina con layout "Roma Live Music"
+ costruita sullo schema dati e sull'automazione di SuonaRoma v13
+════════════════════════════════════════════════════════════
+
+COSA È
+
+  Un sito di una sola pagina (index.html) che riprende il layout
+  "Roma Live Music" (banner rosso, intestazione con statistiche,
+  filtri a chip, lista eventi raggruppata per giorno) e lo collega
+  alla struttura dati di SuonaRoma v13:
+
+    data/locali.json + data/locali.js   24 locali (schema v13)
+    data/eventi.json  + data/eventi.js  archivio eventi (schema v13)
+    data/meta.js                        timestamp ultima estrazione (NUOVO)
+    tools/                              estrattore + config + rapporto
+    .github/workflows/                  aggiornamento automatico giornaliero
+
+  I dati sono letti dai file data/*.js (window.LOCALI_DATA,
+  window.EVENTI_DATA, window.SUONAROMA_META), quindi il sito funziona
+  sia con doppio clic su index.html, sia su qualsiasi hosting statico,
+  senza server né build.
+
+COME SI APRE
+
+  1) Doppio clic su index.html                        (funziona subito)
+  2) python -m http.server 8000  →  localhost:8000    (consigliato)
+  3) GitHub + Cloudflare Pages: aggiornamento automatico ogni giorno,
+     istruzioni complete in GUIDA-CLOUDFLARE.md (v16).
+
+FILTRI
+
+  · Quando: Tutto / Stasera / Domani / Weekend (ven–dom) / 7gg / 30gg.
+    Il giorno "oggi" è calcolato in ora di Roma.
+  · Genere: chip generati dai dati (ordinati per numero di eventi).
+  · Locale: menu a tendina con tutti i 24 locali della v13.
+  · Le note degli eventi vengono mostrate solo se non sono semplici
+    indirizzi duplicati del locale (filtro sul CAP romano / "Italia").
+
+DIFFERENZE RISPETTO ALLA V13 (2 micro-patch, tutto il resto è invariato)
+
+  1) tools/aggiorna_eventi.py — dopo il salvataggio di eventi.json ed
+     eventi.js ora genera anche data/meta.js (timestamp dell'estrazione).
+     Serve alla riga "Aggiornato ..." dell'intestazione anche in
+     apertura diretta (file://), dove tools/report.json non è raggiungibile.
+  2) .github/workflows/aggiorna-eventi.yml — la riga "git add" include
+     ora anche data/meta.js.
+
+  Se integri questo sito nel tuo repository esistente, applica queste
+  due patch anche lì (o sostituisci i due file con questi).
+
+TEST ESEGUITI (11/11/2026, sandbox)
+
+  · python3 tools/aggiorna_eventi.py — eseguito davvero:
+    14/24 locali estratti, 122 eventi salvati (eventi.json + eventi.js).
+  · Sito testato con browser headless in entrambe le modalità
+    (file:// e http://): 122 eventi renderizzati, 42 giorni, filtri
+    data/genere/locale funzionanti, zero errori JavaScript.
+
+COSA NON FUNZIONA (tutto dipende dai siti esterni, non dal codice)
+
+  10 locali su 24 restano senza eventi, per le cause già annotate in
+  tools/config_scraping.json e confermate dal run di oggi:
+
+    · siti ufficiali bloccati da protezioni anti-bot o che tranciano
+      le connessioni da IP datacenter: Fonclea, Vinile, Geronimo's,
+      Lian Club (oggi anche HTTP 500), L'Asino che Vola, Monk (sito),
+      Trenta Formiche (sito)
+    · Stazione Birra: eventi caricati via JavaScript, nessuna fonte HTTP
+    · Blackmarket Hall: pagina eventi non aggiornata
+    · Big Mama e Argot: disattivati in config (sito sostituito / solo Instagram)
+
+  Per questi il sito v13 mostra il locale senza eventi; qui il filtro
+  "Locale" restituisce il messaggio "Nessun evento per i filtri
+  selezionati". Inoltre il run di oggi ha ripulito 41 eventi già
+  passati (4–10 novembre) rimasti nell'archivio consegnato.
+
+  Piccola nota di robustezza (non bloccante): lo scraper scrive prima
+  il rapporto e poi i file dati; se venisse interrotto fra i due passi,
+  il rapporto segnalerà "ok" con dati non salvati. Probabilità molto
+  bassa, nessun intervento richiesto.
+
+── AGGIORNAMENTO v16 (nov. 2026) · TUTTO SU CLOUDFLARE, NIENTE SERVER ──
+
+  · Aruba eliminata del tutto: né hosting, né VPS. Il sito vive su
+    Cloudflare Pages (gratis, HTTPS + CDN), collegato al repository
+    GitHub; l'estrazione quotidiana gira su GitHub Actions (gratis,
+    Python supportato) al posto del VPS. Niente SSH, niente FTP,
+    niente token API: si configura una volta col mouse e poi gira solo.
+  · Il workflow .github/workflows/aggiorna-eventi.yml resta il cuore
+    dell'automazione: controllo ogni 30 minuti con guardia sull'ora
+    di Roma; al primo giro dopo le 14:00 estrae, aggiorna i dati e
+    li committa; il push fa ripubblicare Pages da solo. L'orario
+    resta corretto anche al cambio di ora legale.
+  · Nuovo pages-build.sh: whitelist dei file che Pages mette online
+    (index.html, data/, tools/report.md). Sul progetto Pages:
+    build command "bash pages-build.sh", cartella di output "out".
+  · Rimossi: aruba/ (pubblica_dati.py + conf), cloudflare/ (pubblica.sh
+    + conf), esegui-aggiornamento.sh, GUIDA-ARUBA.md — servivano solo
+    a un server dedicato, che non esiste più. Nel progetto non ci sono
+    credenziali di alcun tipo.
+  · GUIDA-CLOUDFLARE.md riscritta per questo schema: 20-30 minuti di
+    setup (GitHub Desktop + dashboard Cloudflare), dominio opzionale,
+    sezione risoluzione problemi.
+  · Frontend invariato (v14): pulsante "Condividi" con Web Share API
+    e fallback copia-link con toast; titolo evento cliccabile verso la
+    pagina di dettaglio dell'evento (quando esiste, campo url) oppure
+    il sito del locale; footer ripulito dai riferimenti tecnici.

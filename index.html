@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SuonaRoma Live — Concerti a Roma</title>
+<meta name="description" content="Tutti i concerti live a Roma, ogni giorno. Dati estratti automaticamente dai siti ufficiali dei locali.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23A8332E'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' fill='%23fff' font-family='Arial,sans-serif'%3E%E2%99%AA%3C/text%3E%3C/svg%3E">
+<style>
+  :root { --red: #A8332E; --red-light: #F3E3E1; --text: #1a1a1a; --muted: #6b6b6b; --border: #e5e5e5; --bg: #ffffff; }
+  * { box-sizing: border-box; } html, body { margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px 80px; }
+  .construction-banner { background: var(--red); color: #fff; text-align: center; padding: 10px 16px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.02em; }
+  .wrap-inner { padding: 24px 0 0; }
+  header { padding: 24px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+  h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6px; }
+  h1 span { color: var(--red); }
+  .subtitle { color: var(--muted); font-size: 14px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: baseline; margin-top: 12px; font-size: 13px; color: var(--muted); }
+  .meta-row b { color: var(--text); font-weight: 600; }
+  .meta-row .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--red); display: inline-block; vertical-align: middle; margin: 0 2px; }
+  .filters { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; padding: 16px;
+    background: #fafafa; border: 1px solid var(--border); border-radius: 8px; }
+  .filter-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  .filter-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted);
+    margin-bottom: 6px; font-weight: 600; }
+  .chip { background: #fff; border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px;
+    font-size: 13px; cursor: pointer; color: var(--text); font-family: inherit; transition: all 0.12s; }
+  .chip:hover { border-color: var(--red); }
+  .chip.active { background: var(--red); color: #fff; border-color: var(--red); }
+  select.chip { appearance: none; padding-right: 28px; max-width: 100%;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='%236b6b6b' d='M0 0l5 6 5-6z'/></svg>");
+    background-repeat: no-repeat; background-position: right 10px center; }
+  .events { display: flex; flex-direction: column; }
+  .day-header { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
+    margin: 24px 0 8px; font-weight: 600; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .event { display: grid; grid-template-columns: 80px 1fr auto; gap: 16px; padding: 16px 0;
+    border-bottom: 1px solid var(--border); align-items: start; }
+  .event:last-child { border-bottom: none; }
+  .event-date { font-size: 13px; color: var(--red); font-weight: 600; line-height: 1.3; }
+  .event-date .day { font-size: 22px; display: block; line-height: 1.1; }
+  .event-date .month { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .event-body { min-width: 0; }
+  .event-title { font-size: 16px; font-weight: 600; margin: 0 0 4px; line-height: 1.35; }
+  .event-title a { color: inherit; text-decoration: none; }
+  .event-title a:hover { color: var(--red); text-decoration: underline; text-underline-offset: 3px; }
+  .event-meta { font-size: 13px; color: var(--muted); line-height: 1.4; }
+  .event-meta a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+  .event-meta a:hover { color: var(--red); }
+  .event-meta .sep { margin: 0 6px; color: var(--border); }
+  .event-note { font-size: 12.5px; color: var(--muted); margin-top: 4px; line-height: 1.45; }
+  .tag { display: inline-block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 2px 6px; background: var(--red-light); color: var(--red); border-radius: 3px; margin-right: 6px; font-weight: 600; }
+  .event-cta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+  .event-time { font-size: 13px; color: var(--text); font-weight: 500; }
+  .btn { display: inline-block; background: var(--red); color: #fff; padding: 6px 12px; border-radius: 4px;
+    text-decoration: none; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .btn:hover { background: #8a2823; }
+  .btn.ghost { background: transparent; color: var(--red); border: 1px solid var(--red); }
+  .btn.ghost:hover { background: var(--red-light); }
+  .empty { text-align: center; padding: 60px 20px; color: var(--muted); }
+  .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(8px);
+    background: var(--text); color: #fff; padding: 10px 18px; border-radius: 6px; font-size: 13px;
+    opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 60; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 12px; text-align: center; line-height: 1.7; }
+  footer a { color: var(--muted); }
+  noscript { display: block; text-align: center; padding: 40px 20px; color: var(--muted); }
+  @media (max-width: 600px) {
+    .event { grid-template-columns: 60px 1fr; gap: 12px; }
+    .event-cta { grid-column: 1 / -1; flex-direction: row; align-items: center; padding-left: 72px; }
+    .event-time { display: none; }
+    h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="construction-banner">Aggiornamento automatico ogni giorno — dati estratti dai siti ufficiali dei locali e da fonti pubbliche. Verifica sempre gli orari prima di uscire.</div>
+  <div class="wrap-inner">
+  <header>
+    <h1>SuonaRoma <span>Live</span></h1>
+    <div class="subtitle">Tutti i concerti live a Roma, in un posto solo.</div>
+    <div class="meta-row">
+      <span><b id="event-count">–</b> eventi</span>
+      <span class="dot"></span>
+      <span><b id="venue-count">–</b> locali</span>
+      <span class="dot"></span>
+      <span>Aggiornato <b id="updated-at">—</b></span>
+    </div>
+  </header>
+  <div class="filters">
+    <div>
+      <div class="filter-label">Quando</div>
+      <div class="filter-row" id="when-filters" role="group" aria-label="Filtro data">
+        <button class="chip active" data-when="all">Tutto</button>
+        <button class="chip" data-when="today">Stasera</button>
+        <button class="chip" data-when="tomorrow">Domani</button>
+        <button class="chip" data-when="weekend">Weekend</button>
+        <button class="chip" data-when="7">Prossimi 7gg</button>
+        <button class="chip" data-when="30">Prossimi 30gg</button>
+      </div>
+    </div>
+    <div>
+      <div class="filter-label">Genere</div>
+      <div class="filter-row" id="genre-filters" role="group" aria-label="Filtro genere"></div>
+    </div>
+    <div>
+      <div class="filter-label">Locale</div>
+      <div class="filter-row">
+        <select class="chip" id="venue-select" aria-label="Filtro locale"></select>
+      </div>
+    </div>
+  </div>
+  <div class="events" id="events-list"></div>
+  <footer>
+    Dati estratti automaticamente dai siti ufficiali dei locali e da fonti pubbliche (zero.eu, Songkick, RomaToday).<br>
+    <span style="opacity:0.6">SuonaRoma v15 · layout Roma Live Music — controlla sempre gli orari sui siti dei locali</span>
+  </footer>
+  </div>
+</div>
+<noscript>Attiva JavaScript per vedere la lista dei concerti.</noscript>
+<script src="data/locali.js"></script>
+<script src="data/eventi.js"></script>
+<script src="data/meta.js"></script>
+<script>
+'use strict';
+/* SuonaRoma Live v15 — singola pagina su schema dati SuonaRoma v13
+   Dati: window.LOCALI_DATA (24 locali), window.EVENTI_DATA (eventi futuri),
+         window.SUONAROMA_META (timestamp ultima estrazione). */
+
+const venueById = {};
+(window.LOCALI_DATA || []).forEach(v => { venueById[v.id] = v; });
+const EVENTS = (window.EVENTI_DATA || []).slice();
+
+/* ---------- date helpers (tutto in ora di Roma, confronti su stringhe ISO) ---------- */
+function oggiISO() {
+  return new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Rome' }); // YYYY-MM-DD
+}
+function addDays(iso, n) {
+  const [y, m, d] = iso.split('-').map(Number);
+  const t = new Date(Date.UTC(y, m - 1, d + n));
+  return t.toISOString().slice(0, 10);
+}
+function weekdayISO(iso) { // 0 = domenica ... 6 = sabato
+  const [y, m, d] = iso.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, d)).getUTCDay();
+}
+const GIORNI = ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'];
+const MESI = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'];
+const MESI_L = ['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
+
+function inWeekend(iso, base) {
+  // venerdì, sabato e domenica della settimana in corso (dal giorno corrente alla domenica)
+  const w = weekdayISO(iso);
+  return (w === 5 || w === 6 || w === 0) && iso >= base && iso <= addDays(base, 6);
+}
+const QUANDO = {
+  all:      () => () => true,
+  today:    (b) => (d) => d === b,
+  tomorrow: (b) => (d) => d === addDays(b, 1),
+  weekend:  (b) => (d) => inWeekend(d, b),
+  '7':      (b) => (d) => d >= b && d < addDays(b, 7),
+  '30':     (b) => (d) => d >= b && d < addDays(b, 30)
+};
+
+/* ---------- stato filtri ---------- */
+const state = { when: 'all', genre: 'all', venue: 'all' };
+const BASE = oggiISO();
+
+/* ---------- utilità ---------- */
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+function notaValida(n) {
+  // le note estratte a volte sono solo l'indirizzo del locale: in quel caso si omette
+  if (!n) return false;
+  const t = String(n).trim();
+  if (!t) return false;
+  if (/\b00\d{3}\b/.test(t) || /Italia$/i.test(t)) return false;   // CAP romano o indirizzo geocodificato
+  if (/^(Roma|Via|Viale|Piazza|Largo|Vicolo|Corso)[, ]/i.test(t)) return false;
+  return true;
+}
+function linkEvento(e) {
+  // link di dettaglio dell'evento quando esiste (campo url; compatibilità futura:
+  // prenotazione come URL); se non esiste si punta al sito del locale
+  if (e && typeof e.url === 'string' && /^https?:\/\//i.test(e.url)) return e.url;
+  if (e && typeof e.prenotazione === 'string' && /^https?:\/\//i.test(e.prenotazione)) return e.prenotazione;
+  const v = e ? venueById[e.venueId] : null;
+  return (v && v.website) ? v.website : '';
+}
+
+/* ---------- condivisione (Web Share API + fallback copia link) ---------- */
+const shareTargets = [];
+let toastTimer = null;
+function mostraToast(msg) {
+  let t = document.getElementById('toast');
+  if (!t) { t = document.createElement('div'); t.id = 'toast'; t.className = 'toast'; document.body.appendChild(t); }
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+}
+async function copiaTesto(txt) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(txt); return true; }
+  } catch (err) { /* si prosegue con il metodo classico */ }
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = txt; ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;';
+    document.body.appendChild(ta);
+    ta.select(); ta.setSelectionRange(0, txt.length);
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  } catch (err) { return false; }
+}
+async function condividiEvento(idx) {
+  const p = shareTargets[idx];
+  if (!p) return;
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: p.titolo, text: p.testo, url: p.url });
+      return;
+    } catch (err) {
+      if (err && err.name === 'AbortError') return; // l'utente ha annullato
+      // errore reale della API: si prosegue con il fallback
+    }
+  }
+  const ok = await copiaTesto(p.url);
+  mostraToast(ok ? 'Link copiato: incollalo dove vuoi condividerlo'
+                 : 'Condivisione non disponibile su questo dispositivo');
+}
+
+/* ---------- filtri UI ---------- */
+const genCount = {};
+EVENTS.forEach(e => { genCount[e.genere] = (genCount[e.genere] || 0) + 1; });
+const generi = Object.keys(genCount).sort((a, b) => genCount[b] - genCount[a] || a.localeCompare(b));
+
+const genreBox = document.getElementById('genre-filters');
+genreBox.innerHTML =
+  '<button class="chip active" data-genre="all">Tutti</button>' +
+  generi.map(g => '<button class="chip" data-genre="' + esc(g) + '">' + esc(g) + '</button>').join('');
+
+const venueSel = document.getElementById('venue-select');
+const localiOrd = (window.LOCALI_DATA || []).slice().sort((a, b) => a.nome.localeCompare(b.nome, 'it'));
+venueSel.innerHTML = '<option value="all">Tutti i locali</option>' +
+  localiOrd.map(v => '<option value="' + v.id + '">' + esc(v.nome) + '</option>').join('');
+
+document.getElementById('when-filters').addEventListener('click', ev => {
+  const b = ev.target.closest('button[data-when]');
+  if (!b) return;
+  document.querySelectorAll('#when-filters .chip').forEach(c => c.classList.remove('active'));
+  b.classList.add('active');
+  state.when = b.dataset.when;
+  render();
+});
+genreBox.addEventListener('click', ev => {
+  const b = ev.target.closest('button[data-genre]');
+  if (!b) return;
+  genreBox.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  b.classList.add('active');
+  state.genre = b.dataset.genre;
+  render();
+});
+venueSel.addEventListener('change', () => { state.venue = venueSel.value; render(); });
+
+/* ---------- rendering ---------- */
+const listEl = document.getElementById('events-list');
+const emptyEl = '<div class="empty">Nessun evento per i filtri selezionati.</div>';
+listEl.addEventListener('click', ev => {
+  const b = ev.target.closest('button[data-share]');
+  if (b) condividiEvento(Number(b.dataset.share));
+});
+
+function giornoHeader(iso) {
+  const [y, m, d] = iso.split('-').map(Number);
+  const w = GIORNI[weekdayISO(iso)];
+  const anno = (y !== Number(BASE.slice(0, 4))) ? ' ' + y : '';
+  return w + ' ' + d + ' ' + MESI_L[m - 1] + anno;
+}
+
+function eventoHTML(e, idx) {
+  const v = venueById[e.venueId] || null;
+  const nomeVenue = v ? v.nome : 'Locale non disponibile';
+  const site = v && v.website ? v.website : '#';
+  const link = linkEvento(e) || site;
+  const [y, m, d] = e.data.split('-');
+  shareTargets[idx] = {
+    titolo: e.artista,
+    testo: e.artista + ' — ' + nomeVenue + ', ' + giornoHeader(e.data) + (e.ora ? ' alle ' + e.ora : ''),
+    url: link
+  };
+  const btn = '<button class="btn" type="button" data-share="' + idx + '" aria-label="Condividi ' + esc(e.artista) + '">Condividi</button>';
+  const titolo = link && link !== '#'
+    ? '<a href="' + esc(link) + '" target="_blank" rel="noopener">' + esc(e.artista) + '</a>'
+    : esc(e.artista);
+  return '<article class="event">' +
+    '<div class="event-date"><span class="day">' + Number(d) + '</span>' +
+    '<span class="month">' + MESI[Number(m) - 1] + '</span></div>' +
+    '<div class="event-body">' +
+      '<h3 class="event-title">' + titolo + '</h3>' +
+      '<div class="event-meta"><span class="tag">' + esc(e.genere || 'Live') + '</span>' +
+      '<a href="' + esc(site) + '" target="_blank" rel="noopener"><b>' + esc(nomeVenue) + '</b></a>' +
+      (v && v.indirizzo ? '<span class="sep">·</span>' + esc(v.indirizzo) : '') +
+      '</div>' +
+      (notaValida(e.note) ? '<div class="event-note">' + esc(e.note) + '</div>' : '') +
+    '</div>' +
+    '<div class="event-cta"><span class="event-time">' + esc(e.ora || '') + '</span>' + btn + '</div>' +
+    '</article>';
+}
+
+function render() {
+  const fQuando = (QUANDO[state.when] || QUANDO.all)(BASE);
+  const visibili = EVENTS.filter(e =>
+    fQuando(e.data) &&
+    (state.genre === 'all' || e.genere === state.genre) &&
+    (state.venue === 'all' || String(e.venueId) === String(state.venue))
+  ).sort((a, b) => a.data.localeCompare(b.data) || (a.ora || '').localeCompare(b.ora || '') || a.venueId - b.venueId);
+
+  if (!visibili.length) { listEl.innerHTML = emptyEl; return; }
+  let html = '', giornoCorrente = null;
+  visibili.forEach((e, i) => {
+    if (e.data !== giornoCorrente) {
+      giornoCorrente = e.data;
+      html += '<div class="day-header">' + esc(giornoHeader(e.data)) + '</div>';
+    }
+    html += eventoHTML(e, i);
+  });
+  listEl.innerHTML = html;
+}
+
+/* ---------- statistiche in testa ---------- */
+document.getElementById('event-count').textContent = EVENTS.length;
+document.getElementById('venue-count').textContent = new Set(EVENTS.map(e => e.venueId)).size;
+const upEl = document.getElementById('updated-at');
+if (window.SUONAROMA_META && window.SUONAROMA_META.aggiornato) {
+  const t = window.SUONAROMA_META.aggiornato;
+  const dt = new Date(t);
+  const giorno = dt.toLocaleDateString('it-IT', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Europe/Rome' });
+  const ora = dt.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Rome' });
+  upEl.textContent = giorno + ', ' + ora;
+  upEl.title = 'Estrazione automatica: ' + t;
+} else {
+  upEl.textContent = '—';
+}
+
+render();
+</script>
+</body>
+</html>

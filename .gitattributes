@@ -1,0 +1,6 @@
+# Fine riga coerenti per tutto il progetto:
+# gli script shell e i workflow devono restare con fine riga Unix (LF),
+# anche se il repository viene preparato o modificato da Windows.
+*.sh   text eol=lf
+*.py   text eol=lf
+*.yml  text eol=lf
