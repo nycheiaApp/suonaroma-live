@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ─────────────────────────────────────────────────────────────
-#  SuonaRoma Live v16 · prepara la cartella "out/" che Cloudflare
+#  SuonaRoma Live v19 · prepara la cartella "out/" che Cloudflare
 #  Pages pubblica.
 #
 #  Viene eseguito automaticamente da Cloudflare Pages a ogni build:
@@ -14,9 +14,11 @@
 set -eu
 
 rm -rf out
-mkdir -p out/data out/tools
+mkdir -p out/data out/css out/js out/tools
 
-cp -f index.html out/
+cp -f index.html locali.html mappa.html aggiungi-locale.html out/
+cp -f css/leaflet.css out/css/
+cp -f js/leaflet.min.js out/js/
 cp -f data/locali.js data/eventi.js data/meta.js out/data/
 cp -f data/locali.json data/eventi.json out/data/
 cp -f tools/report.md out/tools/

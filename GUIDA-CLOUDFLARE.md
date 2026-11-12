@@ -38,20 +38,23 @@ repository pubblici (e sufficiente anche sui privati).
 
 Il progetto va caricato su GitHub una sola volta; dopo ci pensano i bot.
 
-### Strada consigliata: GitHub Desktop (tutto col mouse)
+### Strada consigliata: dal browser, senza installare nulla
 
-1. Installa **GitHub Desktop** ([desktop.github.com](https://desktop.github.com)),
-   aprilo → **Sign in to GitHub.com**. Si apre il browser: accedi, oppure
-   crea l'account con **Create an account** (gratuito).
-2. Menu **File → Add local repository → Choose…**: seleziona la cartella
-   `suonaroma-live` estratta dallo zip. Ti dirà che non è un repository:
-   clicca **create and add a repository** (Name: `suonaroma-live`) → **Create repository**.
-3. Clicca il pulsante **Publish repository**: lascia il nome
-   `suonaroma-live`, scegli se spuntare "Keep this code private" (vedi
-   riquadro qui sotto) → **Publish**.
-4. Verifica aprendo `github.com/<tuo-utente>/suonaroma-live`: devi vedere
-   `index.html`, `pages-build.sh`, le cartelle `data/`, `tools/`,
-   `.github/`.
+1. Su github.com premi il "+" in alto a destra → **New repository** →
+   nome `suonaroma-live` → scegli Public/Private → **Create repository**
+   (lascialo vuoto, senza README).
+2. Dentro il repository: **Add file → Upload files** e trascina prima i
+   file della cartella principale (`index.html`, `pages-build.sh`,
+   `.gitattributes`, `GUIDA-CLOUDFLARE.md`, `LEGGIMI-NUOVO-SITO.txt`),
+   poi quelli di `data/`, poi `tools/`, poi la cartella `.github` →
+   **Commit changes** (un commit per gruppo va benissimo).
+   Attenzione: non dimenticare `.github`: è la cartella che inizia con un punto
+   e contiene il workflow di Actions; se manca, la scheda Actions resta
+   vuota. Se il trascinamento non la prende: Add file → Create new file,
+   come nome scrivi `.github/workflows/aggiorna-eventi.yml` e incolla il
+   contenuto del file locale.
+3. Verifica: nella home del repository devi vedere `index.html`,
+   `pages-build.sh`, le cartelle `data/`, `tools/`, `.github/`.
 
 > **Pubblico o privato?** Il repository **pubblico** è consigliato: i dati
 > sono comunque pubblici (è l'agenda di eventi del sito), il progetto non
@@ -60,17 +63,16 @@ Il progetto va caricato su GitHub una sola volta; dopo ci pensano i bot.
 > ma consuma i minuti gratuiti di Actions (~1.100 al mese sui 2.000
 > gratis: va bene lo stesso, solo un po' più stretto).
 
-### In alternativa: dal browser, senza installare nulla
+### In alternativa: GitHub Desktop (app per PC)
 
-1. Su github.com premi il "+" in alto a destra → **New repository** →
-   nome `suonaroma-live` → scegli Public/Private → **Create repository**
-   (lascialo vuoto, senza README).
-2. Dentro il repository: **Add file → Upload files** e trascina prima i
-   file della cartella principale (`index.html`, `pages-build.sh`,
-   `.gitattributes`, `GUIDA-CLOUDFLARE.md`, `LEGGIMI-NUOVO-SITO.txt`),
-   poi quelli di `data/`, poi `tools/`, poi `.github/workflows/` —
-   trascinando le cartelle nella pagina i percorsi si ricreano da soli.
-   → **Commit changes** (un commit per gruppo va benissimo).
+1. Installa **GitHub Desktop** ([desktop.github.com](https://desktop.github.com)),
+   aprilo → **Sign in to GitHub.com**. Si apre il browser: accedi, oppure
+   crea l'account con **Create an account** (gratuito).
+2. Menu **File → Add local repository → Choose…**: seleziona la cartella
+   `suonaroma-live` estratta dallo zip. Ti dirà che non è un repository:
+   clicca **create and add a repository** (Name: `suonaroma-live`) → **Create repository**.
+3. Pulsante **Publish repository** ("pubblicare" qui significa solo
+   caricare su GitHub: puoi spuntare "Keep this code private") → **Publish**.
 
 ## Passo 2 · Crea il progetto Cloudflare Pages
 
@@ -138,7 +140,7 @@ tuo dominio (es. `www.tuodominio.it`):
    nameserver (es. `anna.ns.cloudflare.com`): impostali nel pannello del
    registrar dove il dominio è registrato. Il dominio resta tuo, cambia
    solo chi gestisce il DNS (attivazione: minuti, al massimo 24h).
-2. ⚠️ **Se hai caselle email sul dominio** (es. info@tuodominio.it):
+2. **Attenzione — se hai caselle email sul dominio** (es. info@tuodominio.it):
    prima di confermare annota i record **MX** e **A/CNAME del mail
    server** esistenti e ricontrollali dopo l'attivazione — le email
    continuano a funzionare se quei record restano corretti.

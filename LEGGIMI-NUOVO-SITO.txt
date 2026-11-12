@@ -100,9 +100,124 @@ COSA NON FUNZIONA (tutto dipende dai siti esterni, non dal codice)
     a un server dedicato, che non esiste più. Nel progetto non ci sono
     credenziali di alcun tipo.
   · GUIDA-CLOUDFLARE.md riscritta per questo schema: 20-30 minuti di
-    setup (GitHub Desktop + dashboard Cloudflare), dominio opzionale,
+    setup (GitHub web + dashboard Cloudflare), dominio opzionale,
     sezione risoluzione problemi.
   · Frontend invariato (v14): pulsante "Condividi" con Web Share API
     e fallback copia-link con toast; titolo evento cliccabile verso la
     pagina di dettaglio dell'evento (quando esiste, campo url) oppure
     il sito del locale; footer ripulito dai riferimenti tecnici.
+
+── AGGIORNAMENTO v17 (nov. 2026) · 5 interventi sull'interfaccia ──
+
+  · p1 · Il nome del locale in ogni evento ora porta alla HOME del sito
+    del locale (prima alcune schede puntavano a pagine interne: es.
+    Alexanderplatz finiva su /tutti-gli-eventi; ora estraiamo sempre
+    la radice del dominio, es. https://www.alexanderplatzjazz.com/).
+  · p2 · Titolo dell'evento e orario raddoppiati: 16→32px il titolo,
+    13→26px l'orario.
+  · p3 · Ogni intestazione di giorno ha il pulsante "Torna su" (a
+    destra): riporta all'inizio pagina, dove sono i filtri, con
+    scorrimento morbido.
+  · p4 · La testata (banner rosso + titolo + statistiche) resta fissa
+    in alto durante lo scorrimento, fino a prima della sezione
+    "Quando"; i filtri e la lista scorrono sotto di essa.
+  · p5 · Nella tendina "Locale", i locali senza eventi nell'archivio
+    sono marcati: "nome locale - dati non disponibili" (oggi 10 su 24).
+  · Modificato SOLO index.html: per pubblicare basta sostituire quel
+    file nel repository GitHub (Add file → Upload files) — Cloudflare
+    Pages ridistribuisce da solo in circa un minuto.
+
+── AGGIORNAMENTO v18 (nov. 2026) · barra rossa ridisposta + footer ──
+
+  · La barra rossa con l'avviso sull'aggiornamento automatico non sta
+    più in cima alla pagina: è scesa dentro l'intestazione, nella riga
+    subito sopra i numeri (eventi / locali / aggiornato il ...).
+    La testata fissa (p4 della v17) resta tale e comprende anche la
+    barra rossa spostata.
+  · In calce la scritta tecnica è sostituita da:
+    "© 2026 SuonaRoma — AgoraSonora - ideazione Nycheia".
+  · Modificato SOLO index.html: per pubblicare basta sostituire quel
+    file nel repository GitHub (Add file → Upload files).
+
+── AGGIORNAMENTO v19 (nov. 2026) · avviso ridisegnato + pagine Locali, Mappa, Aggiungi locale ──
+
+  · L'avviso "Aggiornamento automatico ogni giorno…" in testa non ha
+    più il rettangolo rosso: è testo rosso su sfondo bianco, e la frase
+    finale "Verifica sempre gli orari…" è stata tolta.
+  · Titolo dell'evento e orario tornano alle dimensioni originali
+    (16px e 13px): annullato il raddoppio della v17.
+  · Su mobile l'orario dell'evento torna visibile, accanto al pulsante
+    "Condividi" (prima era nascosto).
+  · Sulla riga "SuonaRoma Live" ci sono i pulsanti "Locali", "Mappa" e
+    "Aggiungi locale", come nella nav del progetto originario v13. Tre
+    pagine nuove sviluppate recuperando il codice originale:
+    - locali.html: archivio dei 24 locali con ricerca (nome, indirizzo,
+      quartiere, genere), telefono, generi, numero di eventi in
+      programma o "dati non disponibili"; il nome porta alla home del
+      sito del locale, "Prossimi eventi" apre la lista eventi già
+      filtrata su quel locale.
+    - mappa.html: cartina Leaflet (libreria locale css/js/leaflet,
+      recuperata dal v13, senza CDN) con i segnaposto dei locali, tile
+      OpenStreetMap con passaggio automatico a CARTO in caso di blocco,
+      lista a lato che centra la mappa, popup con telefono e link.
+    - aggiungi-locale.html: modulo di segnalazione del progetto
+      originario (stessi campi e stessi obbligatorî: nome, indirizzo,
+      tipo, generi) che apre il client di posta a nycheia@proton.me con
+      il messaggio precompilato; in più un pulsante "Copia messaggio"
+      per chi non usa il client di posta.
+  · Su index un link con ?locale=ID (es. da mappa o locali) apre la
+    lista già filtrata su quel locale.
+  · pages-build.sh aggiornato: pubblica anche le tre pagine nuove e le
+    cartelle css/ e js/. Nel repository i file da caricare sono quindi:
+    index.html (sostituito), locali.html, mappa.html,
+    aggiungi-locale.html, css/leaflet.css, js/leaflet.min.js e
+    pages-build.sh (sostituito).
+
+── AGGIORNAMENTO v20 (nov. 2026) · mappa sbloccata (tile bloccate 403) ──
+
+  · Problema: sulla pagina Mappa la cartina appariva con riquadri
+    giallo/neri e la scritta "403 Access blocked — App is not
+    following the tile usage policy of OpenStreetMap". I server
+    volontari di tile.openstreetmap.org hanno bloccato l'accesso dal
+    sito pubblicato (politica d'uso OSM per le pagine web su hosting
+    esterno). Il blocco risponde con un'immagine, quindi Leaflet non
+    vedeva errori e non passava mai al fornitore di riserva.
+  · Prima ipotesi scartata: le tile CARTO (carto.com) rispondevano
+    200 ma con il messaggio "API KEY REQUIRED" — anche CARTO ormai
+    richiede una chiave per le sue basemap, quindi non è più una
+    fonte libera.
+  · Soluzione: tre fonti di mappe senza chiave API, con passaggio
+    automatico se una fonte dà errori:
+    1. OpenStreetMap Deutschland — tile.openstreetmap.de (FOSSGIS,
+       stile OpenStreetMap classico) — fonte primaria;
+    2. OpenStreetMap Francia — tile.openstreetmap.fr;
+    3. Esri World Street Map come ultima riserva.
+    I dati restano OpenStreetMap; cambia solo il server che disegna
+    la cartina. Attribuzione aggiornata in fondo alla cartina e nella
+    riga sotto la mappa.
+  · In più: il segnaposto del locale selezionato ora torna rosso
+    quando ne si seleziona un altro (prima restava nero).
+  · Modificato SOLO mappa.html: per pubblicare basta sostituire quel
+    file nel repository GitHub (Add file → Upload files) e attendere
+    la ridistribuzione di Cloudflare Pages (~1 minuto). Se la mappa
+    mostra ancora i riquadri bloccati, fare un aggiornamento forzato
+    della pagina (Ctrl+Shift+R / Cmd+Shift+R) per svuotare la cache.
+
+── AGGIORNAMENTO v21 (nov. 2026) · modulo più rigoroso + pulsante Mappa disattivato ──
+
+  · Pagina "Aggiungi locale": ora sono obbligatori anche Quartiere /
+    Zona, Sito web, Descrizione breve e la tua email (sezione
+    "Chi segnala"), oltre ai già obbligatori Nome, Indirizzo, Tipo di
+    locale e Generi musicali. I campi nuovi sono contrassegnati con
+    l'asterisco rosso e il pulsante "Invia segnalazione" li richiede
+    tutti prima di aprire il riepilogo con la mail pronta.
+  · Il pulsante "Mappa" è disattivato su tutte le pagine: resta
+    visibile ma grigio, non cliccabile, con la spiegazione al
+    passaggio del mouse ("La mappa non è disponibile al momento").
+    La pagina mappa.html non è più raggiungibile dai pulsanti ma
+    resta online per chi ha un link diretto; basta ripristinare il
+    collegamento per riattivarla.
+  · Pacchetto zip: tutti i file ora sono dentro la cartella
+    suonaroma-live/ (prima erano alla radice dell'archivio).
+  · Modificati: index.html, locali.html, mappa.html,
+    aggiungi-locale.html (tutti e quattro sostituiti nel repository).

@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SuonaRoma Live — Aggiungi un locale</title>
+<meta name="description" content="Segnala un locale con musica dal vivo a Roma che non è ancora nell'archivio di SuonaRoma.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23A8332E'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' fill='%23fff' font-family='Arial,sans-serif'%3E%E2%99%AA%3C/text%3E%3C/svg%3E">
+<style>
+  :root { --red: #A8332E; --red-light: #F3E3E1; --text: #1a1a1a; --muted: #6b6b6b; --border: #e5e5e5; --bg: #ffffff; }
+  * { box-sizing: border-box; } html, body { margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px 80px; }
+  /* avviso aggiornamento — testo rosso, niente sfondo rosso (p1 v19) */
+  .construction-banner { background: none; color: var(--red); text-align: center; padding: 0;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.02em; margin: 14px 0 0; }
+  .wrap-inner { padding: 24px 0 0; }
+  header { padding: 24px 0 24px; border-bottom: 1px solid var(--border); }
+  .head-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .head-nav { display: flex; gap: 8px; flex-wrap: wrap; }
+  .head-btn { display: inline-block; background: #fff; color: var(--red); border: 1px solid var(--red);
+    border-radius: 4px; padding: 5px 12px; font-size: 12.5px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+  .head-btn:hover { background: var(--red); color: #fff; }
+  .head-btn--full { background: var(--red); color: #fff; }
+  .head-btn--full:hover { background: #8a2823; border-color: #8a2823; }
+  .head-btn.current { background: var(--red-light); border-color: var(--red); color: var(--red); }
+  /* i3 v21: pulsante Mappa temporaneamente disattivato */
+  .head-btn--off, .head-btn--off:hover { background: #f7f6f5; color: #b9b0ae; border-color: #d8d4d2; cursor: not-allowed; }
+  h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6px; }
+  h1 span { color: var(--red); }
+  .subtitle { color: var(--muted); font-size: 14px; }
+  .aggiungi-wrap { display: grid; grid-template-columns: 300px 1fr; gap: 24px; margin-top: 24px; }
+  .aggiungi-left { padding: 22px; border: 1px solid var(--border); border-radius: 8px; background: #fafafa;
+    display: flex; flex-direction: column; justify-content: space-between; gap: 20px; }
+  .aggiungi-title { font-size: 22px; font-weight: 700; line-height: 1.25; margin: 0 0 12px; }
+  .aggiungi-title em { color: var(--red); font-style: normal; }
+  .aggiungi-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin: 0; }
+  .aggiungi-note { padding: 12px 14px; border-left: 3px solid var(--red); background: var(--red-light);
+    font-size: 12px; color: var(--muted); line-height: 1.7; border-radius: 0 6px 6px 0; }
+  .aggiungi-note span { color: var(--red); font-weight: 700; }
+  .aggiungi-bottom { font-size: 10.5px; color: var(--muted); letter-spacing: 0.05em; }
+  .form-section { margin-bottom: 26px; }
+  .form-section-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 8px; }
+  .form-section-title::before { content: "◆"; color: var(--red); font-size: 11px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-full { grid-column: 1 / -1; }
+  .form-group label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted);
+    display: block; margin-bottom: 5px; font-weight: 600; }
+  .form-group label span { color: var(--red); }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 9px 12px; background: #fff; border: 1px solid var(--border); border-radius: 6px;
+    font-family: inherit; font-size: 14px; color: var(--text); outline: none; resize: vertical; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--red); }
+  .form-group textarea { min-height: 76px; }
+  .form-group .hint { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .generi-select { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+  .genere-chip { font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 600;
+    padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; cursor: pointer;
+    background: #fff; color: var(--text); user-select: none; font-family: inherit; }
+  .genere-chip:hover { border-color: var(--red); color: var(--red); }
+  .genere-chip.sel { background: var(--red); color: #fff; border-color: var(--red); }
+  .btn-invia { width: 100%; padding: 13px; background: var(--red); color: #fff; border: none; border-radius: 6px;
+    font-family: inherit; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700;
+    cursor: pointer; transition: background 0.15s; margin-top: 6px; }
+  .btn-invia:hover { background: #8a2823; }
+  .form-required-note { font-size: 11px; color: var(--muted); margin-top: 8px; text-align: right; }
+  .form-required-note span { color: var(--red); font-weight: 700; }
+  .riepilogo { display: none; margin-top: 22px; padding: 18px; border: 1px solid var(--red);
+    border-radius: 8px; background: #fffdfc; }
+  .riepilogo.show { display: block; }
+  .riepilogo h3 { margin: 0 0 8px; font-size: 15px; }
+  .riepilogo p { font-size: 12.5px; color: var(--muted); margin: 0 0 12px; line-height: 1.6; }
+  .riepilogo-testo { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 11.5px;
+    white-space: pre-wrap; background: #fafafa; border: 1px solid var(--border); border-radius: 6px;
+    padding: 12px; max-height: 220px; overflow: auto; color: var(--text); line-height: 1.55; }
+  .riepilogo-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .riepilogo-actions a, .riepilogo-actions button { display: inline-block; font-size: 12px; font-weight: 600;
+    text-decoration: none; padding: 7px 14px; border-radius: 4px; border: 1px solid var(--red);
+    color: var(--red); background: #fff; cursor: pointer; font-family: inherit; }
+  .riepilogo-actions a.solid { background: var(--red); color: #fff; }
+  .riepilogo-actions a.solid:hover { background: #8a2823; }
+  .riepilogo-actions button:hover, .riepilogo-actions a:hover { background: var(--red-light); }
+  .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(8px);
+    background: var(--text); color: #fff; padding: 10px 18px; border-radius: 6px; font-size: 13px;
+    opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 60; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 12px; text-align: center; line-height: 1.7; }
+  @media (max-width: 780px) {
+    .aggiungi-wrap { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="wrap-inner">
+  <header>
+    <div class="head-row">
+      <h1>SuonaRoma <span>Live</span></h1>
+      <nav class="head-nav" aria-label="Altre sezioni del sito">
+        <a class="head-btn" href="index.html">Eventi</a>
+        <a class="head-btn" href="locali.html">Locali</a>
+        <a class="head-btn head-btn--off" aria-disabled="true" title="La mappa non è disponibile al momento">Mappa</a>
+        <a class="head-btn head-btn--full current" href="aggiungi-locale.html">Aggiungi locale</a>
+      </nav>
+    </div>
+    <div class="subtitle">Segnala un locale con musica dal vivo che non è ancora nell'archivio.</div>
+    <div class="construction-banner">Aggiornamento automatico ogni giorno — dati estratti dai siti ufficiali dei locali e da fonti pubbliche.</div>
+  </header>
+  </div>
+
+  <div class="aggiungi-wrap">
+    <!-- colonna intro -->
+    <div class="aggiungi-left">
+      <div>
+        <div class="aggiungi-title">Conosci un <em>locale</em> che manca?</div>
+        <p class="aggiungi-desc">Aiutaci a rendere l'archivio più completo. Segnalaci un locale che fa
+        musica dal vivo a Roma e non è ancora presente nel sito: verificheremo le informazioni e lo
+        aggiungeremo il prima possibile.</p>
+      </div>
+      <div class="aggiungi-note">I campi contrassegnati con <span>*</span> sono obbligatori. Più
+      informazioni fornisci, più velocemente potremo aggiungere il locale all'archivio.</div>
+      <div class="aggiungi-bottom">SuonaRoma è una ideazione Nycheia · © 2026</div>
+    </div>
+
+    <!-- colonna form (struttura recuperata da aggiungi-locale.html del progetto originario v13) -->
+    <div>
+      <div class="form-section">
+        <div class="form-section-title">Dati del locale</div>
+        <div class="form-grid">
+          <div class="form-group form-full">
+            <label>Nome del locale <span>*</span></label>
+            <input type="text" id="f-nome" placeholder="Es. Alexanderplatz Jazz Club">
+          </div>
+          <div class="form-group form-full">
+            <label>Indirizzo <span>*</span></label>
+            <input type="text" id="f-indirizzo" placeholder="Es. Via Ostia 9 – Prati, Roma">
+          </div>
+          <div class="form-group">
+            <label>Quartiere / Zona <span>*</span></label>
+            <input type="text" id="f-zona" placeholder="Es. Trastevere, Pigneto, EUR…">
+          </div>
+          <div class="form-group">
+            <label>Telefono</label>
+            <input type="tel" id="f-telefono" placeholder="Es. +39 06 1234567">
+          </div>
+          <div class="form-group form-full">
+            <label>Sito web <span>*</span></label>
+            <input type="url" id="f-website" placeholder="Es. https://www.nomelocale.it">
+          </div>
+          <div class="form-group form-full">
+            <label>Email del locale</label>
+            <input type="email" id="f-email" placeholder="Es. info@nomelocale.it">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Musica e tipologia</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Tipo di locale <span>*</span></label>
+            <select id="f-tipo">
+              <option value="">— Seleziona —</option>
+              <option>Live Club</option>
+              <option>Jazz Club</option>
+              <option>Pub / Live Club</option>
+              <option>Auditorium</option>
+              <option>Arena / Grande Venue</option>
+              <option>Cocktail Lounge</option>
+              <option>Club su Barca</option>
+              <option>Spazio Polivalente</option>
+              <option>Circolo Arci</option>
+              <option>Ristorante / Live</option>
+              <option>Bar / Live Club</option>
+              <option>Teatro</option>
+              <option>Altro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Capienza (persone)</label>
+            <input type="number" id="f-capienza" placeholder="Es. 200" min="0">
+          </div>
+          <div class="form-group form-full">
+            <label>Generi musicali <span>*</span></label>
+            <div class="generi-select" id="generi-chips"></div>
+            <div class="hint">Clicca per selezionare uno o più generi</div>
+          </div>
+          <div class="form-group form-full">
+            <label>Descrizione breve <span>*</span></label>
+            <textarea id="f-descrizione" placeholder="Descrivi il locale in 2-3 righe: storia, atmosfera, programmazione tipica…"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Programmazione</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Giorni con musica live</label>
+            <input type="text" id="f-giorni" placeholder="Es. Venerdì e sabato, Tutti i giorni…">
+          </div>
+          <div class="form-group">
+            <label>Orario tipico inizio concerti</label>
+            <input type="text" id="f-orario" placeholder="Es. 21:30">
+          </div>
+          <div class="form-group form-full">
+            <label>Note aggiuntive</label>
+            <textarea id="f-note" placeholder="Prenotazione obbligatoria? Ingresso a pagamento? Tessera richiesta? Altre info utili…"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Chi segnala</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Il tuo nome</label>
+            <input type="text" id="f-mittente-nome" placeholder="Il tuo nome">
+          </div>
+          <div class="form-group">
+            <label>La tua email <span>*</span></label>
+            <input type="email" id="f-mittente-email" placeholder="per eventuali aggiornamenti">
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn-invia" id="btn-invia">Invia segnalazione</button>
+      <div class="form-required-note"><span>*</span> campi obbligatori</div>
+
+      <!-- riepilogo generato: si apre dopo l'invio, con mailto e copia del messaggio -->
+      <div class="riepilogo" id="riepilogo">
+        <h3>La tua segnalazione è pronta</h3>
+        <p id="riepilogo-intro">Premi <b>Apri il client di posta</b>: si apre il tuo programma di email
+        con il messaggio già scritto, indirizzato a <b>nycheia@proton.me</b> — non resta che premere
+        invia. In alternativa copia il messaggio e incollalo dove preferisci.</p>
+        <div class="riepilogo-testo" id="riepilogo-testo"></div>
+        <div class="riepilogo-actions">
+          <a id="link-mailto" class="solid" href="#">Apri il client di posta</a>
+          <button type="button" id="btn-copia">Copia messaggio</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Dati estratti automaticamente dai siti ufficiali dei locali e da fonti pubbliche (zero.eu, Songkick, RomaToday).<br>
+    <span style="opacity:0.6">© 2026 SuonaRoma — AgoraSonora - ideazione Nycheia</span>
+  </footer>
+</div>
+<script>
+'use strict';
+/* SuonaRoma Live v21 · pagina Aggiungi locale — comportamento recuperato dal progetto
+   originario v13: la segnalazione parte con il client di posta a nycheia@proton.me.
+   i1 v21: ora sono obbligatori anche Quartiere/Zona, Sito web, Descrizione breve
+   e l'email di chi segnala. */
+
+const GENERI = ['Jazz','Blues','Rock','Pop','Indie','Folk','Classica','Elettronica','Metal','R&B','Soul','Funk','Swing','Latino','Country','Sperimentale','Contemporanea'];
+const selGeneri = new Set();
+const EMAIL_DEST = 'nycheia@proton.me';
+
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+const chipsBox = document.getElementById('generi-chips');
+function buildChips() {
+  chipsBox.innerHTML = GENERI.map(g =>
+    '<button type="button" class="genere-chip' + (selGeneri.has(g) ? ' sel' : '') + '" data-genere="' + esc(g) + '">' + esc(g) + '</button>'
+  ).join('');
+}
+chipsBox.addEventListener('click', ev => {
+  const b = ev.target.closest('.genere-chip');
+  if (!b) return;
+  const g = b.dataset.genere;
+  selGeneri.has(g) ? selGeneri.delete(g) : selGeneri.add(g);
+  buildChips();
+});
+buildChips();
+
+let toastTimer = null;
+function mostraToast(msg) {
+  let t = document.getElementById('toast');
+  if (!t) { t = document.createElement('div'); t.id = 'toast'; t.className = 'toast'; document.body.appendChild(t); }
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+async function copiaTesto(txt) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(txt); return true; }
+  } catch (err) { /* si prosegue con il metodo classico */ }
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = txt; ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;';
+    document.body.appendChild(ta);
+    ta.select(); ta.setSelectionRange(0, txt.length);
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  } catch (err) { return false; }
+}
+
+const val = id => (document.getElementById(id).value || '').trim();
+const riga = (etichetta, valore) => valore ? etichetta + ': ' + valore : '';
+
+function costruisciMessaggio() {
+  const nome = val('f-nome'), indirizzo = val('f-indirizzo'), tipo = val('f-tipo');
+  const zona = val('f-zona'), website = val('f-website'), descrizione = val('f-descrizione');
+  const mittEmail = val('f-mittente-email');
+  if (!nome || !indirizzo || !zona || !website || !tipo || !descrizione || !mittEmail || selGeneri.size === 0) return null;
+  const capienza = val('f-capienza');
+  const mittNome = val('f-mittente-nome');
+  return 'SEGNALAZIONE NUOVO LOCALE – SuonaRoma\n' +
+    '══════════════════════════════════════\n\n' +
+    'DATI PRINCIPALI\n───────────────\n' +
+    ['Nome', 'Indirizzo', 'Quartiere/Zona', 'Telefono', 'Sito web', 'Email locale']
+      .map((k, i) => riga(k, [nome, indirizzo, val('f-zona'), val('f-telefono'), val('f-website'), val('f-email')][i]))
+      .filter(Boolean).join('\n') + '\n\n' +
+    'MUSICA E TIPOLOGIA\n──────────────────\n' +
+    ['Tipo', 'Capienza', 'Generi'].map((k, i) => riga(k, [tipo, capienza ? capienza + ' persone' : '', [...selGeneri].join(', ')][i]))
+      .filter(Boolean).join('\n') +
+    (val('f-descrizione') ? '\n\nDescrizione:\n' + val('f-descrizione') : '') + '\n\n' +
+    'PROGRAMMAZIONE\n──────────────\n' +
+    ['Giorni live', 'Orario tipico'].map((k, i) => riga(k, [val('f-giorni'), val('f-orario')][i]))
+      .filter(Boolean).join('\n') +
+    (val('f-note') ? '\n\nNote:\n' + val('f-note') : '') + '\n\n' +
+    'CHI SEGNALA\n───────────\n' +
+    ['Nome', 'Email'].map((k, i) => riga(k, [mittNome, mittEmail][i])).filter(Boolean).join('\n') + '\n\n' +
+    '──────────────────────────────────────\n' +
+    'Inviato da SuonaRoma · ' + new Date().toLocaleDateString('it-IT');
+}
+
+let ultimoMessaggio = '';
+document.getElementById('btn-invia').addEventListener('click', () => {
+  const msg = costruisciMessaggio();
+  ultimoMessaggio = msg || ultimoMessaggio;
+  if (!msg) {
+    mostraToast('Compila i campi obbligatori: nome, indirizzo, quartiere/zona, sito web, tipo di locale, descrizione breve, almeno un genere e la tua email.');
+    return;
+  }
+  const nome = val('f-nome');
+  const mailto = 'mailto:' + EMAIL_DEST +
+    '?subject=' + encodeURIComponent('Aggiungi locale: ' + nome) +
+    '&body=' + encodeURIComponent(msg);
+  const r = document.getElementById('riepilogo');
+  document.getElementById('link-mailto').href = mailto;
+  document.getElementById('riepilogo-testo').textContent = msg;
+  r.classList.add('show');
+  r.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});
+
+document.getElementById('btn-copia').addEventListener('click', async () => {
+  const ok = await copiaTesto(ultimoMessaggio);
+  mostraToast(ok ? 'Messaggio copiato: incollalo in una email a ' + EMAIL_DEST
+                 : 'Copia non disponibile su questo dispositivo');
+});
+</script>
+</body>
+</html>

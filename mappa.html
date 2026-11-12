@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SuonaRoma Live — Mappa</title>
+<meta name="description" content="La mappa di tutti i locali con musica dal vivo a Roma: trovi il locale più vicino e le indicazioni per arrivare.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23A8332E'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' fill='%23fff' font-family='Arial,sans-serif'%3E%E2%99%AA%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/leaflet.css">
+<style>
+  :root { --red: #A8332E; --red-light: #F3E3E1; --text: #1a1a1a; --muted: #6b6b6b; --border: #e5e5e5; --bg: #ffffff; }
+  * { box-sizing: border-box; } html, body { margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px 80px; }
+  /* avviso aggiornamento — testo rosso, niente sfondo rosso (p1 v19) */
+  .construction-banner { background: none; color: var(--red); text-align: center; padding: 0;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.02em; margin: 14px 0 0; }
+  .wrap-inner { padding: 24px 0 0; }
+  header { padding: 24px 0 24px; border-bottom: 1px solid var(--border); }
+  .head-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .head-nav { display: flex; gap: 8px; flex-wrap: wrap; }
+  .head-btn { display: inline-block; background: #fff; color: var(--red); border: 1px solid var(--red);
+    border-radius: 4px; padding: 5px 12px; font-size: 12.5px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+  .head-btn:hover { background: var(--red); color: #fff; }
+  .head-btn--full { background: var(--red); color: #fff; }
+  .head-btn--full:hover { background: #8a2823; border-color: #8a2823; }
+  .head-btn.current { background: var(--red-light); border-color: var(--red); color: var(--red); }
+  /* i3 v21: pulsante Mappa temporaneamente disattivato */
+  .head-btn--off, .head-btn--off:hover { background: #f7f6f5; color: #b9b0ae; border-color: #d8d4d2; cursor: not-allowed; }
+  h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6px; }
+  h1 span { color: var(--red); }
+  .subtitle { color: var(--muted); font-size: 14px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: baseline; margin-top: 12px; font-size: 13px; color: var(--muted); }
+  .meta-row b { color: var(--text); font-weight: 600; }
+  .meta-row .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--red); display: inline-block; vertical-align: middle; margin: 0 2px; }
+  /* mappa + lista, layout recuperato dalla pagina mappa.html del progetto originario v13 */
+  .mappa-wrap { display: grid; grid-template-columns: 1fr 340px; gap: 16px; margin-top: 24px; align-items: stretch; }
+  .mappa-map { position: relative; border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+    min-height: 420px; height: 620px; background: #e8e8e8; z-index: 1; }
+  #leaflet-map { width: 100%; height: 100%; }
+  .mappa-note { margin-top: 8px; font-size: 12px; color: var(--muted); text-align: center; }
+  .mappa-note.offline { display: none; color: var(--red); font-weight: 600; }
+  .mappa-sidebar { border: 1px solid var(--border); border-radius: 8px; background: #fafafa;
+    display: flex; flex-direction: column; max-height: 620px; }
+  .mappa-sidebar-header { padding: 12px 14px; border-bottom: 1px solid var(--border); }
+  .mappa-sidebar-title { font-size: 13px; font-weight: 700; }
+  .mappa-sidebar-sub { font-size: 11.5px; color: var(--muted); }
+  .mappa-list { overflow-y: auto; }
+  .mvi { padding: 12px 14px; border-bottom: 1px solid var(--border); cursor: pointer; }
+  .mvi:last-child { border-bottom: none; }
+  .mvi:hover, .mvi.active { background: var(--red-light); }
+  .mvi-name { font-size: 14px; font-weight: 600; line-height: 1.35; }
+  .mvi-tag { font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 600; margin-top: 2px; }
+  .mvi-addr { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .mvi-na { font-size: 11px; color: var(--muted); margin-top: 4px; font-style: italic; }
+  .mvi-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .mvi-actions a { display: inline-block; font-size: 11px; font-weight: 600; text-decoration: none;
+    padding: 3px 8px; border-radius: 4px; border: 1px solid var(--red); color: var(--red); background: #fff; white-space: nowrap; }
+  .mvi-actions a:hover { background: var(--red); color: #fff; }
+  /* popup dei marker */
+  .leaflet-popup-content-wrapper { border-radius: 8px; }
+  .leaflet-popup-content { margin: 12px 16px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+  .popup-tag { font-size: 9px; color: var(--red); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; margin-bottom: 3px; }
+  .popup-name { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 3px; line-height: 1.3; }
+  .popup-addr { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+  .popup-links { display: flex; flex-wrap: wrap; gap: 6px; }
+  .popup-links a { display: inline-block; font-size: 11px; font-weight: 600; text-decoration: none;
+    padding: 3px 8px; border-radius: 4px; border: 1px solid var(--red); color: var(--red); }
+  .popup-links a.solid { background: var(--red); color: #fff; }
+  .popup-tel { display: block; font-size: 11px; color: var(--text); font-weight: 600; text-decoration: none; margin-top: 5px; }
+  .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(8px);
+    background: var(--text); color: #fff; padding: 10px 18px; border-radius: 6px; font-size: 13px;
+    opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 60; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 12px; text-align: center; line-height: 1.7; }
+  noscript { display: block; text-align: center; padding: 40px 20px; color: var(--muted); }
+  @media (max-width: 780px) {
+    .mappa-wrap { grid-template-columns: 1fr; }
+    .mappa-map { height: 380px; min-height: 380px; }
+    .mappa-sidebar { max-height: none; }
+    h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="wrap-inner">
+  <header>
+    <div class="head-row">
+      <h1>SuonaRoma <span>Live</span></h1>
+      <nav class="head-nav" aria-label="Altre sezioni del sito">
+        <a class="head-btn" href="index.html">Eventi</a>
+        <a class="head-btn" href="locali.html">Locali</a>
+        <a class="head-btn head-btn--off" aria-disabled="true" title="La mappa non è disponibile al momento">Mappa</a>
+        <a class="head-btn head-btn--full" href="aggiungi-locale.html">Aggiungi locale</a>
+      </nav>
+    </div>
+    <div class="subtitle">Tutti i locali sulla cartina: clicca su un segnaposto o su un nome nella lista.</div>
+    <div class="construction-banner">Aggiornamento automatico ogni giorno — dati estratti dai siti ufficiali dei locali e da fonti pubbliche.</div>
+    <div class="meta-row">
+      <span><b id="venue-count">–</b> locali in mappa</span>
+      <span class="dot"></span>
+      <span><b id="venue-active">–</b> con eventi in programma</span>
+      <span class="dot"></span>
+      <span>Aggiornato <b id="updated-at">—</b></span>
+    </div>
+  </header>
+  </div>
+
+  <div class="mappa-wrap">
+    <div class="mappa-map">
+      <div id="leaflet-map"></div>
+    </div>
+    <div class="mappa-sidebar">
+      <div class="mappa-sidebar-header">
+        <div class="mappa-sidebar-title">Locali live a Roma</div>
+        <div class="mappa-sidebar-sub" id="mappa-sub">Clicca su un locale per centrare la mappa</div>
+      </div>
+      <div class="mappa-list" id="mappa-list"></div>
+    </div>
+  </div>
+  <div class="mappa-note" id="mappa-note">Cartografia © OpenStreetMap contributors · le posizioni sono indicative, dai dati geocodificati dei locali.</div>
+
+  <footer>
+    Dati estratti automaticamente dai siti ufficiali dei locali e da fonti pubbliche (zero.eu, Songkick, RomaToday).<br>
+    <span style="opacity:0.6">© 2026 SuonaRoma — AgoraSonora - ideazione Nycheia</span>
+  </footer>
+</div>
+<noscript>Attiva JavaScript per vedere la mappa dei locali.</noscript>
+<script src="js/leaflet.min.js"></script>
+<script src="data/locali.js"></script>
+<script src="data/eventi.js"></script>
+<script src="data/meta.js"></script>
+<script>
+'use strict';
+/* SuonaRoma Live v21 · pagina Mappa — Leaflet locale (recuperato dal progetto originario v13),
+   marker personalizzati. Fonti tile senza chiave API, con ripiego automatico in caso di errori:
+   OpenStreetMap Deutschland (FOSSGIS) → OpenStreetMap Francia → Esri World Street Map.
+   Motivo: i server volontari di tile.openstreetmap.org bloccano con errore 403 le pagine
+   web su hosting esterno (politica d'uso OSM) e il blocco restituisce un'immagine, quindi
+   il fallback automatico non scattava; CARTO invece ora esige una chiave API. */
+
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+function fmtTel(t) {
+  let n = String(t || '').replace(/\D/g, '');
+  if (n.length > 10 && n.startsWith('39')) n = n.slice(2);
+  if (n.startsWith('0')) return n.slice(0, 2) + ' ' + n.slice(2);
+  return n.replace(/^(\d{3})/, '$1 ');
+}
+
+const LOCALI = (window.LOCALI_DATA || []).slice().sort((a, b) => a.nome.localeCompare(b.nome, 'it'));
+const eventiPerVenue = {};
+(window.EVENTI_DATA || []).forEach(e => { eventiPerVenue[String(e.venueId)] = (eventiPerVenue[String(e.venueId)] || 0) + 1; });
+
+/* fornitori di tile senza chiave API, in ordine di ripiego — v20:
+   le tile di tile.openstreetmap.org sono bloccate (403) per i siti su hosting esterno
+   e CARTO basemaps ora richiede una chiave API, quindi non si usano più */
+const TILE_PROVIDERS = [
+  { url: 'https://tile.openstreetmap.de/{z}/{x}/{y}.png',
+    attr: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · tile FOSSGIS' },
+  { url: 'https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
+    attr: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · tile openstreetmap.fr',
+    sub: 'abc' },
+  { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}.png',
+    attr: 'Tiles © <a href="https://www.esri.com">Esri</a>' }
+];
+let providerIdx = 0, tileErrCount = 0, tileLayer = null;
+
+function attachTileLayer(map) {
+  const p = TILE_PROVIDERS[providerIdx];
+  if (tileLayer) map.removeLayer(tileLayer);
+  tileLayer = L.tileLayer(p.url, { attribution: p.attr, maxZoom: 19, subdomains: p.sub || 'abc' }).addTo(map);
+  tileLayer.on('tileerror', () => {
+    tileErrCount++;
+    if (tileErrCount >= 6 && providerIdx < TILE_PROVIDERS.length - 1) {
+      providerIdx++; tileErrCount = 0; attachTileLayer(map);
+    } else if (tileErrCount >= 6) {
+      document.getElementById('mappa-note').classList.add('offline');
+      document.getElementById('mappa-note').textContent = 'Cartografia non raggiungibile: controlla la connessione. I segnaposto e la lista funzionano comunque.';
+    }
+  });
+}
+
+const map = L.map('leaflet-map', { zoomControl: true }).setView([41.9028, 12.4964], 11);
+attachTileLayer(map);
+
+const pinHTML = attiva =>
+  '<div style="width:30px;height:30px;border-radius:50% 50% 50% 0;background:' + (attiva ? '#1a1a1a' : '#A8332E') +
+  ';border:2px solid ' + (attiva ? '#A8332E' : '#ffffff') + ';transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;' +
+  'box-shadow:0 2px 6px rgba(0,0,0,.35)"><span style="transform:rotate(45deg);font-size:13px;color:#fff">♪</span></div>';
+const pinNormale = L.divIcon({ className: '', html: pinHTML(false), iconSize: [30, 30], iconAnchor: [15, 30], popupAnchor: [0, -34] });
+const pinAttivo  = L.divIcon({ className: '', html: pinHTML(true),  iconSize: [36, 36], iconAnchor: [18, 36], popupAnchor: [0, -40] });
+
+const markers = {};
+LOCALI.forEach(v => {
+  if (!v.lat || !v.lng) return;
+  const n = eventiPerVenue[String(v.id)] || 0;
+  const popupHTML =
+    '<div>' +
+      (v.tag ? '<div class="popup-tag">' + esc(v.tag) + '</div>' : '') +
+      '<div class="popup-name">' + esc(v.nome) + '</div>' +
+      '<div class="popup-addr">' + esc(v.indirizzo || '') + '</div>' +
+      (n ? '' : '<div class="popup-addr" style="font-style:italic">dati non disponibili</div>') +
+      '<div class="popup-links">' +
+        '<a class="solid" href="index.html?locale=' + esc(String(v.id)) + '">' + (n ? 'Prossimi eventi' : 'Cerca eventi') + '</a>' +
+        (v.website ? '<a href="' + esc(v.website) + '" target="_blank" rel="noopener">Sito</a>' : '') +
+      '</div>' +
+      (v.telefono ? '<a class="popup-tel" href="tel:' + esc(String(v.telefono).replace(/\s/g, '')) + '">' + esc(fmtTel(v.telefono)) + '</a>' : '') +
+    '</div>';
+  const marker = L.marker([v.lat, v.lng], { icon: pinNormale }).addTo(map).bindPopup(popupHTML, { maxWidth: 240 });
+  marker.on('click', () => seleziona(v.id, false));
+  markers[v.id] = marker;
+});
+
+/* ridimensionamento robusto (recupero v13: iPad Safari non avvisa sempre Leaflet) */
+if (window.ResizeObserver) new ResizeObserver(() => map.invalidateSize()).observe(document.getElementById('leaflet-map'));
+window.addEventListener('orientationchange', () => setTimeout(() => map.invalidateSize(), 400));
+
+const listEl = document.getElementById('mappa-list');
+listEl.innerHTML = LOCALI.map(v => {
+  const n = eventiPerVenue[String(v.id)] || 0;
+  return '<div class="mvi" id="mvi-' + v.id + '" data-id="' + v.id + '" role="button" tabindex="0">' +
+    '<div class="mvi-name">' + esc(v.nome) + '</div>' +
+    (v.tag ? '<div class="mvi-tag">' + esc(v.tag) + '</div>' : '') +
+    '<div class="mvi-addr">' + esc(v.indirizzo || '') + '</div>' +
+    (n ? '' : '<div class="mvi-na">dati non disponibili</div>') +
+    '<div class="mvi-actions">' +
+      (v.telefono ? '<a href="tel:' + esc(String(v.telefono).replace(/\s/g, '')) + '">Chiama</a>' : '') +
+      (v.lat && v.lng ? '<a href="https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent((v.indirizzo || '') + ', Roma') + '" target="_blank" rel="noopener">Indicazioni</a>' : '') +
+    '</div>' +
+    '</div>';
+}).join('');
+
+let selMarker = null;
+function seleziona(id, daLista) {
+  const marker = markers[id];
+  if (marker) {
+    if (selMarker && selMarker !== marker) selMarker.setIcon(pinNormale);
+    selMarker = marker;
+    if (daLista) map.flyTo(marker.getLatLng(), 14, { duration: 0.6 });
+    map.invalidateSize();
+    marker.setIcon(pinAttivo);
+    marker.openPopup();
+  }
+  document.querySelectorAll('.mvi').forEach(el => {
+    el.classList.toggle('active', String(el.dataset.id) === String(id));
+    if (String(el.dataset.id) === String(id) && daLista) el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  });
+}
+listEl.addEventListener('click', ev => {
+  const item = ev.target.closest('.mvi');
+  if (!item || ev.target.closest('a')) return;
+  seleziona(Number(item.dataset.id), true);
+});
+listEl.addEventListener('keydown', ev => {
+  const item = ev.target.closest('.mvi');
+  if (!item) return;
+  if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); seleziona(Number(item.dataset.id), true); }
+});
+
+/* statistiche in testa */
+const nAttivi = LOCALI.filter(v => eventiPerVenue[String(v.id)]).length;
+document.getElementById('venue-count').textContent = LOCALI.filter(v => v.lat && v.lng).length;
+document.getElementById('venue-active').textContent = nAttivi;
+const upEl = document.getElementById('updated-at');
+if (window.SUONAROMA_META && window.SUONAROMA_META.aggiornato) {
+  const dt = new Date(window.SUONAROMA_META.aggiornato);
+  const giorno = dt.toLocaleDateString('it-IT', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Europe/Rome' });
+  const ora = dt.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Rome' });
+  upEl.textContent = giorno + ', ' + ora;
+}
+
+/* da condivisi/incollati: mappa.html?locale=ID apre già centrato sul locale */
+const locParam = new URLSearchParams(location.search).get('locale');
+if (locParam) {
+  setTimeout(() => {
+    const mk = markers[locParam] || markers[Number(locParam)];
+    if (mk) {
+      map.flyTo(mk.getLatLng(), 14, { duration: 0.8 });
+      seleziona(locParam, false);
+    }
+  }, 300);
+}
+</script>
+</body>
+</html>

@@ -13,12 +13,27 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
   .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px 80px; }
-  .construction-banner { background: var(--red); color: #fff; text-align: center; padding: 10px 16px;
-    font-size: 13px; font-weight: 600; letter-spacing: 0.02em; }
+  /* p1 v19: avviso aggiornamento — testo rosso, niente sfondo rosso */
+  .construction-banner { background: none; color: var(--red); text-align: center; padding: 0;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.02em; margin: 14px 0 0; }
   .wrap-inner { padding: 24px 0 0; }
-  header { padding: 24px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+  header { padding: 24px 0 24px; border-bottom: 1px solid var(--border); }
+  /* p4: testata (titolo + barra rossa + statistiche) fissa in alto, fino a prima della sezione "Quando" */
+  .masthead { position: sticky; top: 0; z-index: 50; background: var(--bg); margin-bottom: 24px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08); }
   h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6px; }
   h1 span { color: var(--red); }
+  /* p4 v19: pulsanti delle pagine sulla riga del titolo, come la nav del progetto originario */
+  .head-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .head-nav { display: flex; gap: 8px; flex-wrap: wrap; }
+  .head-btn { display: inline-block; background: #fff; color: var(--red); border: 1px solid var(--red);
+    border-radius: 4px; padding: 5px 12px; font-size: 12.5px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+  .head-btn:hover { background: var(--red); color: #fff; }
+  .head-btn--full { background: var(--red); color: #fff; }
+  .head-btn--full:hover { background: #8a2823; border-color: #8a2823; }
+  .head-btn.current { background: var(--red-light); border-color: var(--red); color: var(--red); }
+  /* i3 v21: pulsante Mappa temporaneamente disattivato */
+  .head-btn--off, .head-btn--off:hover { background: #f7f6f5; color: #b9b0ae; border-color: #d8d4d2; cursor: not-allowed; }
   .subtitle { color: var(--muted); font-size: 14px; }
   .meta-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: baseline; margin-top: 12px; font-size: 13px; color: var(--muted); }
   .meta-row b { color: var(--text); font-weight: 600; }
@@ -36,8 +51,14 @@
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='%236b6b6b' d='M0 0l5 6 5-6z'/></svg>");
     background-repeat: no-repeat; background-position: right 10px center; }
   .events { display: flex; flex-direction: column; }
-  .day-header { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
+  .day-header { display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
     margin: 24px 0 8px; font-weight: 600; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  /* p3: pulsante "Torna su" su ogni intestazione di giorno */
+  .torna-su { background: none; border: none; padding: 2px 0; cursor: pointer; font-family: inherit;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); white-space: nowrap; }
+  .torna-su:hover { color: var(--red); text-decoration: underline; text-underline-offset: 3px; }
   .event { display: grid; grid-template-columns: 80px 1fr auto; gap: 16px; padding: 16px 0;
     border-bottom: 1px solid var(--border); align-items: start; }
   .event:last-child { border-bottom: none; }
@@ -45,6 +66,7 @@
   .event-date .day { font-size: 22px; display: block; line-height: 1.1; }
   .event-date .month { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
   .event-body { min-width: 0; }
+  /* p2 v19: dimensioni del titolo evento tornate come prima del raddoppio */
   .event-title { font-size: 16px; font-weight: 600; margin: 0 0 4px; line-height: 1.35; }
   .event-title a { color: inherit; text-decoration: none; }
   .event-title a:hover { color: var(--red); text-decoration: underline; text-underline-offset: 3px; }
@@ -56,7 +78,7 @@
   .tag { display: inline-block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
     padding: 2px 6px; background: var(--red-light); color: var(--red); border-radius: 3px; margin-right: 6px; font-weight: 600; }
   .event-cta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
-  .event-time { font-size: 13px; color: var(--text); font-weight: 500; }
+  .event-time { font-size: 13px; color: var(--text); font-weight: 600; }
   .btn { display: inline-block; background: var(--red); color: #fff; padding: 6px 12px; border-radius: 4px;
     text-decoration: none; font-size: 12px; font-weight: 600; white-space: nowrap; }
   .btn:hover { background: #8a2823; }
@@ -73,19 +95,27 @@
   noscript { display: block; text-align: center; padding: 40px 20px; color: var(--muted); }
   @media (max-width: 600px) {
     .event { grid-template-columns: 60px 1fr; gap: 12px; }
-    .event-cta { grid-column: 1 / -1; flex-direction: row; align-items: center; padding-left: 72px; }
-    .event-time { display: none; }
+    /* p3 v19: l'orario su mobile torna visibile, accanto al pulsante Condividi */
+    .event-cta { grid-column: 1 / -1; flex-direction: row; align-items: center; padding-left: 72px; gap: 10px; }
     h1 { font-size: 24px; }
   }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="construction-banner">Aggiornamento automatico ogni giorno — dati estratti dai siti ufficiali dei locali e da fonti pubbliche. Verifica sempre gli orari prima di uscire.</div>
+  <div class="masthead">
   <div class="wrap-inner">
   <header>
-    <h1>SuonaRoma <span>Live</span></h1>
+    <div class="head-row">
+      <h1>SuonaRoma <span>Live</span></h1>
+      <nav class="head-nav" aria-label="Altre sezioni del sito">
+        <a class="head-btn" href="locali.html">Locali</a>
+        <a class="head-btn head-btn--off" aria-disabled="true" title="La mappa non è disponibile al momento">Mappa</a>
+        <a class="head-btn head-btn--full" href="aggiungi-locale.html">Aggiungi locale</a>
+      </nav>
+    </div>
     <div class="subtitle">Tutti i concerti live a Roma, in un posto solo.</div>
+    <div class="construction-banner">Aggiornamento automatico ogni giorno — dati estratti dai siti ufficiali dei locali e da fonti pubbliche.</div>
     <div class="meta-row">
       <span><b id="event-count">–</b> eventi</span>
       <span class="dot"></span>
@@ -94,6 +124,9 @@
       <span>Aggiornato <b id="updated-at">—</b></span>
     </div>
   </header>
+  </div>
+  </div>
+  <div class="wrap-inner" style="padding-top:0;">
   <div class="filters">
     <div>
       <div class="filter-label">Quando</div>
@@ -120,7 +153,7 @@
   <div class="events" id="events-list"></div>
   <footer>
     Dati estratti automaticamente dai siti ufficiali dei locali e da fonti pubbliche (zero.eu, Songkick, RomaToday).<br>
-    <span style="opacity:0.6">SuonaRoma v15 · layout Roma Live Music — controlla sempre gli orari sui siti dei locali</span>
+    <span style="opacity:0.6">© 2026 SuonaRoma — AgoraSonora - ideazione Nycheia</span>
   </footer>
   </div>
 </div>
@@ -130,7 +163,7 @@
 <script src="data/meta.js"></script>
 <script>
 'use strict';
-/* SuonaRoma Live v15 — singola pagina su schema dati SuonaRoma v13
+/* SuonaRoma Live v21 — singola pagina su schema dati SuonaRoma v13
    Dati: window.LOCALI_DATA (24 locali), window.EVENTI_DATA (eventi futuri),
          window.SUONAROMA_META (timestamp ultima estrazione). */
 
@@ -197,6 +230,20 @@ function linkEvento(e) {
   return (v && v.website) ? v.website : '';
 }
 
+/* p1: il nome del locale deve portare alla HOME del sito del locale, non a
+   pagine interne (es. Alexanderplatz finiva su /tutti-gli-eventi).
+   Restituisce l'origine dell'URL (protocollo + dominio); accetta anche
+   domini senza protocollo e restituisce '' se l'indirizzo è inutilizzabile. */
+function sitoHome(u) {
+  if (!u || typeof u !== 'string') return '';
+  let s = u.trim();
+  if (!/^https?:\/\//i.test(s)) {
+    if (!/^[a-z0-9][a-z0-9.-]*\.[a-z]{2,}/i.test(s)) return '';
+    s = 'https://' + s;
+  }
+  try { return new URL(s).origin + '/'; } catch (err) { return ''; }
+}
+
 /* ---------- condivisione (Web Share API + fallback copia link) ---------- */
 const shareTargets = [];
 let toastTimer = null;
@@ -252,8 +299,18 @@ genreBox.innerHTML =
 
 const venueSel = document.getElementById('venue-select');
 const localiOrd = (window.LOCALI_DATA || []).slice().sort((a, b) => a.nome.localeCompare(b.nome, 'it'));
+/* p5: i locali senza eventi nell'archivio vengono marcati nella tendina */
+const venueConEventi = new Set(EVENTS.map(e => String(e.venueId)));
 venueSel.innerHTML = '<option value="all">Tutti i locali</option>' +
-  localiOrd.map(v => '<option value="' + v.id + '">' + esc(v.nome) + '</option>').join('');
+  localiOrd.map(v => '<option value="' + v.id + '">' + esc(v.nome) +
+    (venueConEventi.has(String(v.id)) ? '' : ' - dati non disponibili') + '</option>').join('');
+
+/* v19 p4: da mappa e locali si arriva con ?locale=ID — pre-seleziona il filtro locale */
+const locParam = new URLSearchParams(location.search).get('locale');
+if (locParam) {
+  const opt = venueSel.querySelector('option[value="' + CSS.escape(locParam) + '"]');
+  if (opt) { venueSel.value = locParam; state.venue = locParam; }
+}
 
 document.getElementById('when-filters').addEventListener('click', ev => {
   const b = ev.target.closest('button[data-when]');
@@ -278,7 +335,10 @@ const listEl = document.getElementById('events-list');
 const emptyEl = '<div class="empty">Nessun evento per i filtri selezionati.</div>';
 listEl.addEventListener('click', ev => {
   const b = ev.target.closest('button[data-share]');
-  if (b) condividiEvento(Number(b.dataset.share));
+  if (b) { condividiEvento(Number(b.dataset.share)); return; }
+  /* p3: "Torna su" riporta all'inizio pagina, dove sono i filtri */
+  const t = ev.target.closest('button[data-torna-su]');
+  if (t) window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 function giornoHeader(iso) {
@@ -291,7 +351,7 @@ function giornoHeader(iso) {
 function eventoHTML(e, idx) {
   const v = venueById[e.venueId] || null;
   const nomeVenue = v ? v.nome : 'Locale non disponibile';
-  const site = v && v.website ? v.website : '#';
+  const site = sitoHome(v && v.website);   /* p1: sempre la home del sito del locale */
   const link = linkEvento(e) || site;
   const [y, m, d] = e.data.split('-');
   shareTargets[idx] = {
@@ -309,7 +369,8 @@ function eventoHTML(e, idx) {
     '<div class="event-body">' +
       '<h3 class="event-title">' + titolo + '</h3>' +
       '<div class="event-meta"><span class="tag">' + esc(e.genere || 'Live') + '</span>' +
-      '<a href="' + esc(site) + '" target="_blank" rel="noopener"><b>' + esc(nomeVenue) + '</b></a>' +
+      (site ? '<a href="' + esc(site) + '" target="_blank" rel="noopener" title="Vai alla home del sito del locale"><b>' + esc(nomeVenue) + '</b></a>'
+            : '<b>' + esc(nomeVenue) + '</b>') +
       (v && v.indirizzo ? '<span class="sep">·</span>' + esc(v.indirizzo) : '') +
       '</div>' +
       (notaValida(e.note) ? '<div class="event-note">' + esc(e.note) + '</div>' : '') +
@@ -331,7 +392,8 @@ function render() {
   visibili.forEach((e, i) => {
     if (e.data !== giornoCorrente) {
       giornoCorrente = e.data;
-      html += '<div class="day-header">' + esc(giornoHeader(e.data)) + '</div>';
+      html += '<div class="day-header"><span>' + esc(giornoHeader(e.data)) + '</span>' +
+        '<button type="button" class="torna-su" data-torna-su title="Torna ad inizio pagina, dove sono i filtri">Torna su</button></div>';
     }
     html += eventoHTML(e, i);
   });

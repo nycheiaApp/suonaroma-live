@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SuonaRoma Live — Locali</title>
+<meta name="description" content="L'archivio di tutti i locali con musica dal vivo a Roma: indirizzi, telefoni, siti web e prossimi eventi.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23A8332E'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' fill='%23fff' font-family='Arial,sans-serif'%3E%E2%99%AA%3C/text%3E%3C/svg%3E">
+<style>
+  :root { --red: #A8332E; --red-light: #F3E3E1; --text: #1a1a1a; --muted: #6b6b6b; --border: #e5e5e5; --bg: #ffffff; }
+  * { box-sizing: border-box; } html, body { margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px 80px; }
+  /* avviso aggiornamento — testo rosso, niente sfondo rosso (p1 v19) */
+  .construction-banner { background: none; color: var(--red); text-align: center; padding: 0;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.02em; margin: 14px 0 0; }
+  .wrap-inner { padding: 24px 0 0; }
+  header { padding: 24px 0 24px; border-bottom: 1px solid var(--border); }
+  .head-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .head-nav { display: flex; gap: 8px; flex-wrap: wrap; }
+  .head-btn { display: inline-block; background: #fff; color: var(--red); border: 1px solid var(--red);
+    border-radius: 4px; padding: 5px 12px; font-size: 12.5px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+  .head-btn:hover { background: var(--red); color: #fff; }
+  .head-btn--full { background: var(--red); color: #fff; }
+  .head-btn--full:hover { background: #8a2823; border-color: #8a2823; }
+  .head-btn.current { background: var(--red-light); border-color: var(--red); color: var(--red); }
+  /* i3 v21: pulsante Mappa temporaneamente disattivato */
+  .head-btn--off, .head-btn--off:hover { background: #f7f6f5; color: #b9b0ae; border-color: #d8d4d2; cursor: not-allowed; }
+  h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6px; }
+  h1 span { color: var(--red); }
+  .subtitle { color: var(--muted); font-size: 14px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: baseline; margin-top: 12px; font-size: 13px; color: var(--muted); }
+  .meta-row b { color: var(--text); font-weight: 600; }
+  .meta-row .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--red); display: inline-block; vertical-align: middle; margin: 0 2px; }
+  /* ricerca, come nella pagina "Locali" del progetto originario */
+  .search-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 24px 0 6px;
+    padding: 12px 14px; background: #fafafa; border: 1px solid var(--border); border-radius: 8px; }
+  .search-wrap input { flex: 1 1 260px; min-width: 0; padding: 8px 12px; font-family: inherit; font-size: 14px;
+    color: var(--text); background: #fff; border: 1px solid var(--border); border-radius: 6px; outline: none; }
+  .search-wrap input:focus { border-color: var(--red); }
+  .search-clear { background: none; border: none; cursor: pointer; font-family: inherit; font-size: 12px;
+    font-weight: 600; color: var(--muted); padding: 4px 6px; }
+  .search-clear:hover { color: var(--red); }
+  .search-clear.hidden { display: none; }
+  .search-count { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+  .venues { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; }
+  .venue-card { border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; background: #fff;
+    display: flex; flex-direction: column; gap: 8px; }
+  .venue-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+  .venue-name { font-size: 16px; font-weight: 600; margin: 0; line-height: 1.35; }
+  .venue-name a { color: inherit; text-decoration: none; }
+  .venue-name a:hover { color: var(--red); text-decoration: underline; text-underline-offset: 3px; }
+  .venue-count { font-size: 12px; color: var(--text); font-weight: 600; white-space: nowrap; background: var(--red-light);
+    color: var(--red); border-radius: 999px; padding: 3px 10px; }
+  .venue-na { font-size: 11.5px; color: var(--muted); font-weight: 400; white-space: nowrap; }
+  .venue-tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 600; }
+  .venue-addr { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .venue-addr a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+  .venue-addr a:hover { color: var(--red); }
+  .venue-genres { display: flex; flex-wrap: wrap; gap: 6px; }
+  .venue-genres .tag { margin-right: 0; }
+  .tag { display: inline-block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 2px 6px; background: var(--red-light); color: var(--red); border-radius: 3px; font-weight: 600; }
+  .venue-desc { font-size: 12.5px; color: var(--muted); margin: 0; line-height: 1.5; }
+  .venue-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 6px; }
+  .venue-links a { display: inline-block; font-size: 12px; font-weight: 600; text-decoration: none;
+    padding: 5px 10px; border-radius: 4px; border: 1px solid var(--red); color: var(--red); background: #fff; white-space: nowrap; }
+  .venue-links a:hover { background: var(--red); color: #fff; }
+  .venue-links a.solid { background: var(--red); color: #fff; }
+  .venue-links a.solid:hover { background: #8a2823; }
+  .empty { text-align: center; padding: 60px 20px; color: var(--muted); grid-column: 1 / -1; }
+  .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(8px);
+    background: var(--text); color: #fff; padding: 10px 18px; border-radius: 6px; font-size: 13px;
+    opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 60; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 12px; text-align: center; line-height: 1.7; }
+  noscript { display: block; text-align: center; padding: 40px 20px; color: var(--muted); }
+  @media (max-width: 680px) { .venues { grid-template-columns: 1fr; } h1 { font-size: 24px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="wrap-inner">
+  <header>
+    <div class="head-row">
+      <h1>SuonaRoma <span>Live</span></h1>
+      <nav class="head-nav" aria-label="Altre sezioni del sito">
+        <a class="head-btn" href="index.html">Eventi</a>
+        <a class="head-btn current" href="locali.html">Locali</a>
+        <a class="head-btn head-btn--off" aria-disabled="true" title="La mappa non è disponibile al momento">Mappa</a>
+        <a class="head-btn head-btn--full" href="aggiungi-locale.html">Aggiungi locale</a>
+      </nav>
+    </div>
+    <div class="subtitle">I locali con musica dal vivo a Roma: indirizzi, telefoni, siti e prossimi eventi.</div>
+    <div class="construction-banner">Aggiornamento automatico ogni giorno — dati estratti dai siti ufficiali dei locali e da fonti pubbliche.</div>
+    <div class="meta-row">
+      <span><b id="venue-count">–</b> locali</span>
+      <span class="dot"></span>
+      <span><b id="venue-active">–</b> con eventi in programma</span>
+      <span class="dot"></span>
+      <span>Aggiornato <b id="updated-at">—</b></span>
+    </div>
+  </header>
+  </div>
+
+  <div class="search-wrap">
+    <input type="text" id="locali-search" placeholder="Cerca per nome, indirizzo, quartiere o genere…" aria-label="Cerca un locale">
+    <button type="button" class="search-clear hidden" id="locali-clear">✕ cancella</button>
+    <span class="search-count" id="locali-count"></span>
+  </div>
+
+  <div class="venues" id="venues"></div>
+
+  <footer>
+    Dati estratti automaticamente dai siti ufficiali dei locali e da fonti pubbliche (zero.eu, Songkick, RomaToday).<br>
+    <span style="opacity:0.6">© 2026 SuonaRoma — AgoraSonora - ideazione Nycheia</span>
+  </footer>
+</div>
+<noscript>Attiva JavaScript per vedere l'archivio dei locali.</noscript>
+<script src="data/locali.js"></script>
+<script src="data/eventi.js"></script>
+<script src="data/meta.js"></script>
+<script>
+'use strict';
+/* SuonaRoma Live v21 · pagina Locali — archivio dei locali con ricerca
+   (comportamento recuperato dalla pagina locali.html del progetto originario v13) */
+
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+/* p1 (v17): il nome del locale porta sempre alla HOME del sito del locale */
+function sitoHome(u) {
+  if (!u || typeof u !== 'string') return '';
+  let s = u.trim();
+  if (!/^https?:\/\//i.test(s)) {
+    if (!/^[a-z0-9][a-z0-9.-]*\.[a-z]{2,}/i.test(s)) return '';
+    s = 'https://' + s;
+  }
+  try { return new URL(s).origin + '/'; } catch (err) { return ''; }
+}
+function fmtTel(t) {
+  let n = String(t || '').replace(/\D/g, '');
+  if (n.length > 10 && n.startsWith('39')) n = n.slice(2);
+  if (n.startsWith('0')) return n.slice(0, 2) + ' ' + n.slice(2);
+  return n.replace(/^(\d{3})/, '$1 ');
+}
+
+const LOCALI = (window.LOCALI_DATA || []).slice().sort((a, b) => a.nome.localeCompare(b.nome, 'it'));
+const eventiPerVenue = {};
+(window.EVENTI_DATA || []).forEach(e => { eventiPerVenue[String(e.venueId)] = (eventiPerVenue[String(e.venueId)] || 0) + 1; });
+
+const box = document.getElementById('venues');
+const searchInput = document.getElementById('locali-search');
+const searchClear = document.getElementById('locali-clear');
+const searchCount = document.getElementById('locali-count');
+const vuoto = '<div class="empty">Nessun locale trovato per la ricerca.</div>';
+
+function cardHTML(v) {
+  const n = eventiPerVenue[String(v.id)] || 0;
+  const site = sitoHome(v.website);
+  const nome = site
+    ? '<a href="' + esc(site) + '" target="_blank" rel="noopener" title="Vai alla home del sito del locale">' + esc(v.nome) + '</a>'
+    : esc(v.nome);
+  const tel = fmtTel(v.telefono);
+  return '<article class="venue-card">' +
+    '<div class="venue-top"><h3 class="venue-name">' + nome + '</h3>' +
+      (n ? '<span class="venue-count">' + n + ' ' + (n === 1 ? 'evento' : 'eventi') + '</span>'
+         : '<span class="venue-na">dati non disponibili</span>') +
+    '</div>' +
+    (v.tag ? '<div class="venue-tag">' + esc(v.tag) + '</div>' : '') +
+    '<div class="venue-addr">' + esc(v.indirizzo || '') +
+      (v.telefono ? ' · <a href="tel:' + esc(String(v.telefono).replace(/\s/g, '')) + '">' + esc(tel) + '</a>' : '') +
+    '</div>' +
+    (v.generi && v.generi.length ? '<div class="venue-genres">' + v.generi.map(g => '<span class="tag">' + esc(g) + '</span>').join('') + '</div>' : '') +
+    (v.descrizione ? '<p class="venue-desc">' + esc(v.descrizione) + '</p>' : '') +
+    '<div class="venue-links">' +
+      '<a href="index.html?locale=' + esc(String(v.id)) + '">' + (n ? 'Prossimi eventi' : 'Cerca eventi') + '</a>' +
+      (site ? '<a class="solid" href="' + esc(site) + '" target="_blank" rel="noopener">Sito ufficiale</a>' : '') +
+      (v.lat && v.lng ? '<a href="https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent((v.indirizzo || '') + ', Roma') + '" target="_blank" rel="noopener">Indicazioni</a>' : '') +
+    '</div>' +
+    '</article>';
+}
+
+function renderLocali() {
+  const term = searchInput.value.trim().toLowerCase();
+  searchClear.classList.toggle('hidden', !term);
+  let lista = LOCALI;
+  if (term) {
+    lista = LOCALI.filter(v =>
+      v.nome.toLowerCase().includes(term) ||
+      (v.indirizzo || '').toLowerCase().includes(term) ||
+      (v.tag || '').toLowerCase().includes(term) ||
+      (v.tipo || '').toLowerCase().includes(term) ||
+      (v.descrizione || '').toLowerCase().includes(term) ||
+      (v.generi || []).some(g => g.toLowerCase().includes(term)));
+  }
+  searchCount.textContent = lista.length + ' di ' + LOCALI.length + ' locali';
+  box.innerHTML = lista.length ? lista.map(cardHTML).join('') : vuoto;
+}
+searchInput.addEventListener('input', renderLocali);
+searchClear.addEventListener('click', () => { searchInput.value = ''; renderLocali(); searchInput.focus(); });
+
+/* statistiche in testa */
+const nAttivi = LOCALI.filter(v => eventiPerVenue[String(v.id)]).length;
+document.getElementById('venue-count').textContent = LOCALI.length;
+document.getElementById('venue-active').textContent = nAttivi;
+const upEl = document.getElementById('updated-at');
+if (window.SUONAROMA_META && window.SUONAROMA_META.aggiornato) {
+  const dt = new Date(window.SUONAROMA_META.aggiornato);
+  const giorno = dt.toLocaleDateString('it-IT', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Europe/Rome' });
+  const ora = dt.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Rome' });
+  upEl.textContent = giorno + ', ' + ora;
+}
+
+renderLocali();
+</script>
+</body>
+</html>
