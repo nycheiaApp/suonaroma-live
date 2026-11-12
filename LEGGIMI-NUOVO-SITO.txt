@@ -7,10 +7,10 @@ COSA È
   Un sito di una sola pagina (index.html) che riprende il layout
   "Roma Live Music" (banner rosso, intestazione con statistiche,
   filtri a chip, lista eventi raggruppata per giorno) e lo collega
-  alla struttura dati di SuonaRoma v13:
+  alla struttura dati:
 
-    data/locali.json + data/locali.js   24 locali (schema v13)
-    data/eventi.json  + data/eventi.js  archivio eventi (schema v13)
+    data/locali.json + data/locali.js   24 locali 
+    data/eventi.json  + data/eventi.js  archivio eventi 
     data/meta.js                        timestamp ultima estrazione (NUOVO)
     tools/                              estrattore + config + rapporto
     .github/workflows/                  aggiornamento automatico giornaliero
