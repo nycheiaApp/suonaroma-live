@@ -1,10 +1,10 @@
 {
- "eseguito_il": "2026-11-12T18:25:09+01:00",
+ "eseguito_il": "2026-11-13T19:40:40+01:00",
  "giorni_avanzo": 365,
  "locali_aggiornati": 16,
  "locali_totali": 24,
- "eventi_totali": 150,
- "eventi_passati_eliminati": 4,
+ "eventi_totali": 146,
+ "eventi_passati_eliminati": 8,
  "doppioni_fusi": 0,
  "dettaglio": [
   {
@@ -13,7 +13,7 @@
    "fonte": "html_wix",
    "stato": "ok",
    "estratti": 18,
-   "rimossi_vecchi": 6
+   "rimossi_vecchi": 17
   },
   {
    "id": 2,
@@ -21,14 +21,14 @@
    "fonte": "html_apm",
    "stato": "ok",
    "estratti": 16,
-   "rimossi_vecchi": 16
+   "rimossi_vecchi": 15
   },
   {
    "id": 3,
    "nome": "Casa del Jazz",
    "fonte": "html_cdj",
    "stato": "ok",
-   "estratti": 35,
+   "estratti": 37,
    "rimossi_vecchi": 35
   },
   {
@@ -58,8 +58,8 @@
    "nome": "Vinile",
    "fonte": "html_vinile",
    "stato": "ok",
-   "estratti": 4,
-   "rimossi_vecchi": 0
+   "estratti": 3,
+   "rimossi_vecchi": 3
   },
   {
    "id": 8,
@@ -74,7 +74,7 @@
    "fonte": "ical",
    "stato": "ok",
    "estratti": 16,
-   "rimossi_vecchi": 1
+   "rimossi_vecchi": 16
   },
   {
    "id": 10,
@@ -97,8 +97,8 @@
    "nome": "Alcazar Live",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 7,
-   "rimossi_vecchi": 7
+   "estratti": 5,
+   "rimossi_vecchi": 6
   },
   {
    "id": 13,
@@ -134,16 +134,16 @@
    "nome": "Monk Club",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 8,
-   "rimossi_vecchi": 8
+   "estratti": 7,
+   "rimossi_vecchi": 7
   },
   {
    "id": 18,
    "nome": "Fanfulla 5/a",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 18,
-   "rimossi_vecchi": 18
+   "estratti": 17,
+   "rimossi_vecchi": 17
   },
   {
    "id": 19,
@@ -188,8 +188,8 @@
    "nome": "Trenta Formiche",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 14,
-   "rimossi_vecchi": 14
+   "estratti": 13,
+   "rimossi_vecchi": 13
   }
  ]
 }
