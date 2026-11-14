@@ -1,10 +1,10 @@
 {
- "eseguito_il": "2026-11-13T19:40:40+01:00",
+ "eseguito_il": "2026-11-14T14:59:07+01:00",
  "giorni_avanzo": 365,
  "locali_aggiornati": 16,
  "locali_totali": 24,
- "eventi_totali": 146,
- "eventi_passati_eliminati": 8,
+ "eventi_totali": 139,
+ "eventi_passati_eliminati": 12,
  "doppioni_fusi": 0,
  "dettaglio": [
   {
@@ -13,7 +13,7 @@
    "fonte": "html_wix",
    "stato": "ok",
    "estratti": 18,
-   "rimossi_vecchi": 17
+   "rimossi_vecchi": 16
   },
   {
    "id": 2,
@@ -21,15 +21,15 @@
    "fonte": "html_apm",
    "stato": "ok",
    "estratti": 16,
-   "rimossi_vecchi": 15
+   "rimossi_vecchi": 13
   },
   {
    "id": 3,
    "nome": "Casa del Jazz",
    "fonte": "html_cdj",
    "stato": "ok",
-   "estratti": 37,
-   "rimossi_vecchi": 35
+   "estratti": 36,
+   "rimossi_vecchi": 36
   },
   {
    "id": 4,
@@ -58,8 +58,8 @@
    "nome": "Vinile",
    "fonte": "html_vinile",
    "stato": "ok",
-   "estratti": 3,
-   "rimossi_vecchi": 3
+   "estratti": 2,
+   "rimossi_vecchi": 2
   },
   {
    "id": 8,
@@ -73,8 +73,8 @@
    "nome": "CrossRoads Live Club",
    "fonte": "ical",
    "stato": "ok",
-   "estratti": 16,
-   "rimossi_vecchi": 16
+   "estratti": 15,
+   "rimossi_vecchi": 15
   },
   {
    "id": 10,
@@ -89,16 +89,16 @@
    "nome": "Palazzo dello Sport (PalaEur)",
    "fonte": "html_romatoday",
    "stato": "ok",
-   "estratti": 2,
-   "rimossi_vecchi": 2
+   "estratti": 1,
+   "rimossi_vecchi": 1
   },
   {
    "id": 12,
    "nome": "Alcazar Live",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 5,
-   "rimossi_vecchi": 6
+   "estratti": 4,
+   "rimossi_vecchi": 5
   },
   {
    "id": 13,
@@ -142,8 +142,8 @@
    "nome": "Fanfulla 5/a",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 17,
-   "rimossi_vecchi": 17
+   "estratti": 16,
+   "rimossi_vecchi": 16
   },
   {
    "id": 19,
@@ -188,8 +188,8 @@
    "nome": "Trenta Formiche",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 13,
-   "rimossi_vecchi": 13
+   "estratti": 12,
+   "rimossi_vecchi": 12
   }
  ]
 }
