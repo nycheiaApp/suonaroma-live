@@ -1,10 +1,10 @@
 {
- "eseguito_il": "2026-11-14T14:59:07+01:00",
+ "eseguito_il": "2026-11-15T18:36:42+01:00",
  "giorni_avanzo": 365,
  "locali_aggiornati": 16,
  "locali_totali": 24,
- "eventi_totali": 139,
- "eventi_passati_eliminati": 12,
+ "eventi_totali": 129,
+ "eventi_passati_eliminati": 14,
  "doppioni_fusi": 0,
  "dettaglio": [
   {
@@ -12,24 +12,24 @@
    "nome": "Alexanderplatz Jazz Club",
    "fonte": "html_wix",
    "stato": "ok",
-   "estratti": 18,
-   "rimossi_vecchi": 16
+   "estratti": 17,
+   "rimossi_vecchi": 17
   },
   {
    "id": 2,
    "nome": "Auditorium Parco della Musica",
    "fonte": "html_apm",
    "stato": "ok",
-   "estratti": 16,
-   "rimossi_vecchi": 13
+   "estratti": 15,
+   "rimossi_vecchi": 12
   },
   {
    "id": 3,
    "nome": "Casa del Jazz",
    "fonte": "html_cdj",
    "stato": "ok",
-   "estratti": 36,
-   "rimossi_vecchi": 36
+   "estratti": 35,
+   "rimossi_vecchi": 35
   },
   {
    "id": 4,
@@ -58,8 +58,8 @@
    "nome": "Vinile",
    "fonte": "html_vinile",
    "stato": "ok",
-   "estratti": 2,
-   "rimossi_vecchi": 2
+   "estratti": 1,
+   "rimossi_vecchi": 1
   },
   {
    "id": 8,
@@ -73,8 +73,8 @@
    "nome": "CrossRoads Live Club",
    "fonte": "ical",
    "stato": "ok",
-   "estratti": 15,
-   "rimossi_vecchi": 15
+   "estratti": 14,
+   "rimossi_vecchi": 14
   },
   {
    "id": 10,
@@ -89,7 +89,7 @@
    "nome": "Palazzo dello Sport (PalaEur)",
    "fonte": "html_romatoday",
    "stato": "ok",
-   "estratti": 1,
+   "estratti": 2,
    "rimossi_vecchi": 1
   },
   {
@@ -97,8 +97,8 @@
    "nome": "Alcazar Live",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 4,
-   "rimossi_vecchi": 5
+   "estratti": 2,
+   "rimossi_vecchi": 3
   },
   {
    "id": 13,
@@ -134,16 +134,16 @@
    "nome": "Monk Club",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 7,
-   "rimossi_vecchi": 7
+   "estratti": 6,
+   "rimossi_vecchi": 6
   },
   {
    "id": 18,
    "nome": "Fanfulla 5/a",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 16,
-   "rimossi_vecchi": 16
+   "estratti": 15,
+   "rimossi_vecchi": 15
   },
   {
    "id": 19,
@@ -173,8 +173,8 @@
    "nome": "Orion Club",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 2,
-   "rimossi_vecchi": 2
+   "estratti": 1,
+   "rimossi_vecchi": 1
   },
   {
    "id": 23,
@@ -188,8 +188,8 @@
    "nome": "Trenta Formiche",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 12,
-   "rimossi_vecchi": 12
+   "estratti": 11,
+   "rimossi_vecchi": 11
   }
  ]
 }
