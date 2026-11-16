@@ -1,10 +1,10 @@
 {
- "eseguito_il": "2026-11-15T18:36:42+01:00",
+ "eseguito_il": "2026-11-16T21:50:25+01:00",
  "giorni_avanzo": 365,
- "locali_aggiornati": 16,
+ "locali_aggiornati": 15,
  "locali_totali": 24,
- "eventi_totali": 129,
- "eventi_passati_eliminati": 14,
+ "eventi_totali": 123,
+ "eventi_passati_eliminati": 13,
  "doppioni_fusi": 0,
  "dettaglio": [
   {
@@ -12,24 +12,24 @@
    "nome": "Alexanderplatz Jazz Club",
    "fonte": "html_wix",
    "stato": "ok",
-   "estratti": 17,
-   "rimossi_vecchi": 17
+   "estratti": 16,
+   "rimossi_vecchi": 16
   },
   {
    "id": 2,
    "nome": "Auditorium Parco della Musica",
    "fonte": "html_apm",
    "stato": "ok",
-   "estratti": 15,
-   "rimossi_vecchi": 12
+   "estratti": 14,
+   "rimossi_vecchi": 10
   },
   {
    "id": 3,
    "nome": "Casa del Jazz",
    "fonte": "html_cdj",
    "stato": "ok",
-   "estratti": 35,
-   "rimossi_vecchi": 35
+   "estratti": 34,
+   "rimossi_vecchi": 34
   },
   {
    "id": 4,
@@ -50,16 +50,15 @@
    "nome": "Largo Venue",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 3,
-   "rimossi_vecchi": 3
+   "estratti": 2,
+   "rimossi_vecchi": 2
   },
   {
    "id": 7,
    "nome": "Vinile",
-   "fonte": "html_vinile",
-   "stato": "ok",
-   "estratti": 1,
-   "rimossi_vecchi": 1
+   "fonte": null,
+   "stato": "fonte non disponibile (html_vinile: 0 eventi; html_testo: 0 eventi)",
+   "estratti": 0
   },
   {
    "id": 8,
@@ -90,15 +89,15 @@
    "fonte": "html_romatoday",
    "stato": "ok",
    "estratti": 2,
-   "rimossi_vecchi": 1
+   "rimossi_vecchi": 2
   },
   {
    "id": 12,
    "nome": "Alcazar Live",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 2,
-   "rimossi_vecchi": 3
+   "estratti": 4,
+   "rimossi_vecchi": 2
   },
   {
    "id": 13,
@@ -134,16 +133,16 @@
    "nome": "Monk Club",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 6,
-   "rimossi_vecchi": 6
+   "estratti": 5,
+   "rimossi_vecchi": 5
   },
   {
    "id": 18,
    "nome": "Fanfulla 5/a",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 15,
-   "rimossi_vecchi": 15
+   "estratti": 14,
+   "rimossi_vecchi": 14
   },
   {
    "id": 19,
@@ -188,8 +187,8 @@
    "nome": "Trenta Formiche",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 11,
-   "rimossi_vecchi": 11
+   "estratti": 10,
+   "rimossi_vecchi": 10
   }
  ]
 }
