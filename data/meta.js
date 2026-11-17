@@ -1,2 +1,2 @@
 // Generato da tools/aggiorna_eventi.py — ultimo aggiornamento riuscito
-window.SUONAROMA_META = {"aggiornato": "2026-11-16T21:50:25+01:00", "eventi": 123, "locali_attivi": 15};
+window.SUONAROMA_META = {"aggiornato": "2026-11-17T22:15:00+01:00", "eventi": 124, "locali_attivi": 15};
