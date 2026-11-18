@@ -1,10 +1,10 @@
 {
- "eseguito_il": "2026-11-17T22:15:00+01:00",
+ "eseguito_il": "2026-11-18T21:49:26+01:00",
  "giorni_avanzo": 365,
- "locali_aggiornati": 15,
+ "locali_aggiornati": 16,
  "locali_totali": 24,
- "eventi_totali": 124,
- "eventi_passati_eliminati": 4,
+ "eventi_totali": 128,
+ "eventi_passati_eliminati": 6,
  "doppioni_fusi": 0,
  "dettaglio": [
   {
@@ -12,8 +12,8 @@
    "nome": "Alexanderplatz Jazz Club",
    "fonte": "html_wix",
    "stato": "ok",
-   "estratti": 15,
-   "rimossi_vecchi": 15
+   "estratti": 14,
+   "rimossi_vecchi": 14
   },
   {
    "id": 2,
@@ -51,14 +51,15 @@
    "fonte": "html_zero",
    "stato": "ok",
    "estratti": 3,
-   "rimossi_vecchi": 2
+   "rimossi_vecchi": 3
   },
   {
    "id": 7,
    "nome": "Vinile",
-   "fonte": null,
-   "stato": "fonte non disponibile (html_vinile: 0 eventi; html_testo: 0 eventi)",
-   "estratti": 0
+   "fonte": "html_vinile",
+   "stato": "ok",
+   "estratti": 4,
+   "rimossi_vecchi": 0
   },
   {
    "id": 8,
@@ -72,7 +73,7 @@
    "nome": "CrossRoads Live Club",
    "fonte": "ical",
    "stato": "ok",
-   "estratti": 14,
+   "estratti": 16,
    "rimossi_vecchi": 14
   },
   {
@@ -133,7 +134,7 @@
    "nome": "Monk Club",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 6,
+   "estratti": 5,
    "rimossi_vecchi": 5
   },
   {
@@ -141,8 +142,8 @@
    "nome": "Fanfulla 5/a",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 13,
-   "rimossi_vecchi": 13
+   "estratti": 12,
+   "rimossi_vecchi": 12
   },
   {
    "id": 19,
@@ -187,7 +188,7 @@
    "nome": "Trenta Formiche",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 10,
+   "estratti": 11,
    "rimossi_vecchi": 10
   }
  ]
