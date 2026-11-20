@@ -1,20 +1,20 @@
 # Rapporto aggiornamento eventi SuonaRoma
 
-- Eseguito il: **2026-11-19T20:23:45+01:00** (ora italiana)
+- Eseguito il: **2026-11-20T18:39:04+01:00** (ora italiana)
 - Locali aggiornati: **16 / 24**
-- Eventi totali in archivio: **126** (solo da oggi in poi)
-- Eventi passati eliminati: **6**
+- Eventi totali in archivio: **122** (solo da oggi in poi)
+- Eventi passati eliminati: **8**
 - Doppioni fusi: **0**
 
 | Locale | Fonte / stato | Eventi |
 |---|---|---|
-| Alexanderplatz Jazz Club | html_wix | 13 |
+| Alexanderplatz Jazz Club | html_wix | 12 |
 | Auditorium Parco della Musica | html_apm | 15 |
 | Casa del Jazz | html_cdj | 34 |
 | Big Mama Blues Club | disattivato: bigmama.it non è più il sito del locale (oggi mostra un sito di formazione sanitaria EUPATI, verificato il 4/11/2026); il locale pubblica la programmazione solo su Facebook (@bigmamaroma), non leggibile senza login | 0 |
-| Fonclea | sito ufficiale protetto da verifica anti-bot (challenge JavaScript) | 0 |
-| Largo Venue | html_zero | 2 |
-| Vinile | html_vinile | 4 |
+| Fonclea | fonte non disponibile (ical: 0 eventi; wp_json: saltato (non WordPress); jsonld: 0 eventi; html_testo: 0 eventi) | 0 |
+| Largo Venue | html_zero | 3 |
+| Vinile | html_vinile | 3 |
 | Stazione Birra | fonte non disponibile (ical: 0 eventi; wp_json: saltato (non WordPress); jsonld: 0 eventi; html_testo: 0 eventi) | 0 |
 | CrossRoads Live Club | ical | 16 |
 | Geronimo's Live Music Club | html_testo | 1 |
@@ -24,11 +24,11 @@
 | Argot | disattivato: nessun sito ufficiale: il locale è presente solo su Instagram (@argot.speakeasy); nessuna fonte alternativa leggibile (non è su zero.eu) | 0 |
 | Blackmarket Hall | fonte non disponibile (ical: 0 eventi; wp_json: 0 eventi; jsonld: 0 eventi; html_testo: 0 eventi) | 0 |
 | Lian Club | sito non raggiungibile (HTTP 500 (errore interno del server)) | 0 |
-| Monk Club | html_zero | 6 |
-| Fanfulla 5/a | html_zero | 11 |
+| Monk Club | html_zero | 5 |
+| Fanfulla 5/a | html_zero | 10 |
 | Al Muretto | fonte non disponibile (html_zero: 0 eventi) | 0 |
 | Traffic Live | html_zero | 1 |
 | Wishlist Club | html_zero | 4 |
 | Orion Club | html_zero | 1 |
-| L'Asino che Vola | sito ufficiale protetto da verifica anti-bot (challenge JavaScript) · fonti alternative: html_zero: 0 eventi | 0 |
-| Trenta Formiche | html_zero | 11 |
+| L'Asino che Vola | fonte non disponibile (ical: 0 eventi; wp_json: 0 eventi; jsonld: 0 eventi; html_testo: 0 eventi; html_zero: 0 eventi) | 0 |
+| Trenta Formiche | html_zero | 10 |

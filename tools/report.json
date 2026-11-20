@@ -1,10 +1,10 @@
 {
- "eseguito_il": "2026-11-19T20:23:45+01:00",
+ "eseguito_il": "2026-11-20T18:39:04+01:00",
  "giorni_avanzo": 365,
  "locali_aggiornati": 16,
  "locali_totali": 24,
- "eventi_totali": 126,
- "eventi_passati_eliminati": 6,
+ "eventi_totali": 122,
+ "eventi_passati_eliminati": 8,
  "doppioni_fusi": 0,
  "dettaglio": [
   {
@@ -12,8 +12,8 @@
    "nome": "Alexanderplatz Jazz Club",
    "fonte": "html_wix",
    "stato": "ok",
-   "estratti": 13,
-   "rimossi_vecchi": 13
+   "estratti": 12,
+   "rimossi_vecchi": 12
   },
   {
    "id": 2,
@@ -21,7 +21,7 @@
    "fonte": "html_apm",
    "stato": "ok",
    "estratti": 15,
-   "rimossi_vecchi": 14
+   "rimossi_vecchi": 13
   },
   {
    "id": 3,
@@ -42,7 +42,7 @@
    "id": 5,
    "nome": "Fonclea",
    "fonte": null,
-   "stato": "sito ufficiale protetto da verifica anti-bot (challenge JavaScript)",
+   "stato": "fonte non disponibile (ical: 0 eventi; wp_json: saltato (non WordPress); jsonld: 0 eventi; html_testo: 0 eventi)",
    "estratti": 0
   },
   {
@@ -50,7 +50,7 @@
    "nome": "Largo Venue",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 2,
+   "estratti": 3,
    "rimossi_vecchi": 2
   },
   {
@@ -58,8 +58,8 @@
    "nome": "Vinile",
    "fonte": "html_vinile",
    "stato": "ok",
-   "estratti": 4,
-   "rimossi_vecchi": 4
+   "estratti": 3,
+   "rimossi_vecchi": 3
   },
   {
    "id": 8,
@@ -134,7 +134,7 @@
    "nome": "Monk Club",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 6,
+   "estratti": 5,
    "rimossi_vecchi": 5
   },
   {
@@ -142,8 +142,8 @@
    "nome": "Fanfulla 5/a",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 11,
-   "rimossi_vecchi": 11
+   "estratti": 10,
+   "rimossi_vecchi": 10
   },
   {
    "id": 19,
@@ -180,7 +180,7 @@
    "id": 23,
    "nome": "L'Asino che Vola",
    "fonte": null,
-   "stato": "sito ufficiale protetto da verifica anti-bot (challenge JavaScript) · fonti alternative: html_zero: 0 eventi",
+   "stato": "fonte non disponibile (ical: 0 eventi; wp_json: 0 eventi; jsonld: 0 eventi; html_testo: 0 eventi; html_zero: 0 eventi)",
    "estratti": 0
   },
   {
@@ -188,7 +188,7 @@
    "nome": "Trenta Formiche",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 11,
+   "estratti": 10,
    "rimossi_vecchi": 10
   }
  ]
