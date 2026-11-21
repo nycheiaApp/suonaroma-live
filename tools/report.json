@@ -1,10 +1,10 @@
 {
- "eseguito_il": "2026-11-20T18:39:04+01:00",
+ "eseguito_il": "2026-11-21T15:32:11+01:00",
  "giorni_avanzo": 365,
  "locali_aggiornati": 16,
  "locali_totali": 24,
- "eventi_totali": 122,
- "eventi_passati_eliminati": 8,
+ "eventi_totali": 114,
+ "eventi_passati_eliminati": 10,
  "doppioni_fusi": 0,
  "dettaglio": [
   {
@@ -12,15 +12,15 @@
    "nome": "Alexanderplatz Jazz Club",
    "fonte": "html_wix",
    "stato": "ok",
-   "estratti": 12,
-   "rimossi_vecchi": 12
+   "estratti": 11,
+   "rimossi_vecchi": 11
   },
   {
    "id": 2,
    "nome": "Auditorium Parco della Musica",
    "fonte": "html_apm",
    "stato": "ok",
-   "estratti": 15,
+   "estratti": 14,
    "rimossi_vecchi": 13
   },
   {
@@ -28,8 +28,8 @@
    "nome": "Casa del Jazz",
    "fonte": "html_cdj",
    "stato": "ok",
-   "estratti": 34,
-   "rimossi_vecchi": 34
+   "estratti": 33,
+   "rimossi_vecchi": 33
   },
   {
    "id": 4,
@@ -51,15 +51,15 @@
    "fonte": "html_zero",
    "stato": "ok",
    "estratti": 3,
-   "rimossi_vecchi": 2
+   "rimossi_vecchi": 3
   },
   {
    "id": 7,
    "nome": "Vinile",
    "fonte": "html_vinile",
    "stato": "ok",
-   "estratti": 3,
-   "rimossi_vecchi": 3
+   "estratti": 2,
+   "rimossi_vecchi": 2
   },
   {
    "id": 8,
@@ -73,8 +73,8 @@
    "nome": "CrossRoads Live Club",
    "fonte": "ical",
    "stato": "ok",
-   "estratti": 16,
-   "rimossi_vecchi": 16
+   "estratti": 15,
+   "rimossi_vecchi": 15
   },
   {
    "id": 10,
@@ -97,8 +97,8 @@
    "nome": "Alcazar Live",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 4,
-   "rimossi_vecchi": 4
+   "estratti": 3,
+   "rimossi_vecchi": 3
   },
   {
    "id": 13,
@@ -142,8 +142,8 @@
    "nome": "Fanfulla 5/a",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 10,
-   "rimossi_vecchi": 10
+   "estratti": 9,
+   "rimossi_vecchi": 9
   },
   {
    "id": 19,
@@ -188,8 +188,8 @@
    "nome": "Trenta Formiche",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 10,
-   "rimossi_vecchi": 10
+   "estratti": 9,
+   "rimossi_vecchi": 9
   }
  ]
 }
