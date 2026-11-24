@@ -1,10 +1,10 @@
 {
- "eseguito_il": "2026-11-23T23:51:08+01:00",
+ "eseguito_il": "2026-11-24T19:41:51+01:00",
  "giorni_avanzo": 365,
- "locali_aggiornati": 15,
+ "locali_aggiornati": 16,
  "locali_totali": 24,
- "eventi_totali": 110,
- "eventi_passati_eliminati": 8,
+ "eventi_totali": 126,
+ "eventi_passati_eliminati": 5,
  "doppioni_fusi": 0,
  "dettaglio": [
   {
@@ -13,7 +13,7 @@
    "fonte": "html_wix",
    "stato": "ok",
    "estratti": 9,
-   "rimossi_vecchi": 9
+   "rimossi_vecchi": 8
   },
   {
    "id": 2,
@@ -21,7 +21,7 @@
    "fonte": "html_apm",
    "stato": "ok",
    "estratti": 13,
-   "rimossi_vecchi": 10
+   "rimossi_vecchi": 11
   },
   {
    "id": 3,
@@ -50,15 +50,16 @@
    "nome": "Largo Venue",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 1,
+   "estratti": 2,
    "rimossi_vecchi": 1
   },
   {
    "id": 7,
    "nome": "Vinile",
-   "fonte": null,
-   "stato": "fonte non disponibile (html_vinile: 0 eventi; html_testo: 0 eventi)",
-   "estratti": 0
+   "fonte": "html_vinile",
+   "stato": "ok",
+   "estratti": 4,
+   "rimossi_vecchi": 0
   },
   {
    "id": 8,
@@ -97,7 +98,7 @@
    "fonte": "html_zero",
    "stato": "ok",
    "estratti": 4,
-   "rimossi_vecchi": 1
+   "rimossi_vecchi": 4
   },
   {
    "id": 13,
@@ -134,15 +135,15 @@
    "fonte": "html_zero",
    "stato": "ok",
    "estratti": 9,
-   "rimossi_vecchi": 4
+   "rimossi_vecchi": 9
   },
   {
    "id": 18,
    "nome": "Fanfulla 5/a",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 11,
-   "rimossi_vecchi": 8
+   "estratti": 22,
+   "rimossi_vecchi": 10
   },
   {
    "id": 19,
@@ -188,7 +189,7 @@
    "fonte": "html_zero",
    "stato": "ok",
    "estratti": 9,
-   "rimossi_vecchi": 8
+   "rimossi_vecchi": 9
   }
  ]
 }

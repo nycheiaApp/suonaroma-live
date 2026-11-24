@@ -1,9 +1,9 @@
 # Rapporto aggiornamento eventi SuonaRoma
 
-- Eseguito il: **2026-11-23T23:51:08+01:00** (ora italiana)
-- Locali aggiornati: **15 / 24**
-- Eventi totali in archivio: **110** (solo da oggi in poi)
-- Eventi passati eliminati: **8**
+- Eseguito il: **2026-11-24T19:41:51+01:00** (ora italiana)
+- Locali aggiornati: **16 / 24**
+- Eventi totali in archivio: **126** (solo da oggi in poi)
+- Eventi passati eliminati: **5**
 - Doppioni fusi: **0**
 
 | Locale | Fonte / stato | Eventi |
@@ -13,8 +13,8 @@
 | Casa del Jazz | html_cdj | 31 |
 | Big Mama Blues Club | disattivato: bigmama.it non è più il sito del locale (oggi mostra un sito di formazione sanitaria EUPATI, verificato il 4/11/2026); il locale pubblica la programmazione solo su Facebook (@bigmamaroma), non leggibile senza login | 0 |
 | Fonclea | fonte non disponibile (ical: 0 eventi; wp_json: saltato (non WordPress); jsonld: 0 eventi; html_testo: 0 eventi) | 0 |
-| Largo Venue | html_zero | 1 |
-| Vinile | fonte non disponibile (html_vinile: 0 eventi; html_testo: 0 eventi) | 0 |
+| Largo Venue | html_zero | 2 |
+| Vinile | html_vinile | 4 |
 | Stazione Birra | fonte non disponibile (ical: 0 eventi; wp_json: saltato (non WordPress); jsonld: 0 eventi; html_testo: 0 eventi) | 0 |
 | CrossRoads Live Club | ical | 14 |
 | Geronimo's Live Music Club | html_testo | 1 |
@@ -25,7 +25,7 @@
 | Blackmarket Hall | fonte non disponibile (ical: 0 eventi; wp_json: 0 eventi; jsonld: 0 eventi; html_testo: 0 eventi) | 0 |
 | Lian Club | sito non raggiungibile (HTTP 500 (errore interno del server)) | 0 |
 | Monk Club | html_zero | 9 |
-| Fanfulla 5/a | html_zero | 11 |
+| Fanfulla 5/a | html_zero | 22 |
 | Al Muretto | fonte non disponibile (html_zero: 0 eventi) | 0 |
 | Traffic Live | html_zero | 1 |
 | Wishlist Club | html_zero | 3 |
