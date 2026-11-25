@@ -1,10 +1,10 @@
 {
- "eseguito_il": "2026-11-24T19:41:51+01:00",
+ "eseguito_il": "2026-11-25T22:57:06+01:00",
  "giorni_avanzo": 365,
  "locali_aggiornati": 16,
  "locali_totali": 24,
- "eventi_totali": 126,
- "eventi_passati_eliminati": 5,
+ "eventi_totali": 133,
+ "eventi_passati_eliminati": 8,
  "doppioni_fusi": 0,
  "dettaglio": [
   {
@@ -12,16 +12,16 @@
    "nome": "Alexanderplatz Jazz Club",
    "fonte": "html_wix",
    "stato": "ok",
-   "estratti": 9,
-   "rimossi_vecchi": 8
+   "estratti": 7,
+   "rimossi_vecchi": 7
   },
   {
    "id": 2,
    "nome": "Auditorium Parco della Musica",
    "fonte": "html_apm",
    "stato": "ok",
-   "estratti": 13,
-   "rimossi_vecchi": 11
+   "estratti": 12,
+   "rimossi_vecchi": 12
   },
   {
    "id": 3,
@@ -50,8 +50,8 @@
    "nome": "Largo Venue",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 2,
-   "rimossi_vecchi": 1
+   "estratti": 5,
+   "rimossi_vecchi": 2
   },
   {
    "id": 7,
@@ -59,7 +59,7 @@
    "fonte": "html_vinile",
    "stato": "ok",
    "estratti": 4,
-   "rimossi_vecchi": 0
+   "rimossi_vecchi": 4
   },
   {
    "id": 8,
@@ -134,16 +134,16 @@
    "nome": "Monk Club",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 9,
-   "rimossi_vecchi": 9
+   "estratti": 10,
+   "rimossi_vecchi": 8
   },
   {
    "id": 18,
    "nome": "Fanfulla 5/a",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 22,
-   "rimossi_vecchi": 10
+   "estratti": 28,
+   "rimossi_vecchi": 21
   },
   {
    "id": 19,
@@ -158,14 +158,14 @@
    "fonte": "html_zero",
    "stato": "ok",
    "estratti": 1,
-   "rimossi_vecchi": 1
+   "rimossi_vecchi": 0
   },
   {
    "id": 21,
    "nome": "Wishlist Club",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 3,
+   "estratti": 4,
    "rimossi_vecchi": 3
   },
   {
@@ -188,8 +188,8 @@
    "nome": "Trenta Formiche",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 9,
-   "rimossi_vecchi": 9
+   "estratti": 8,
+   "rimossi_vecchi": 8
   }
  ]
 }
