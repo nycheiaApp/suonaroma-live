@@ -1,27 +1,27 @@
 {
- "eseguito_il": "2026-11-26T15:13:49+01:00",
+ "eseguito_il": "2026-11-27T16:28:34+01:00",
  "giorni_avanzo": 365,
  "locali_aggiornati": 16,
  "locali_totali": 24,
- "eventi_totali": 130,
- "eventi_passati_eliminati": 7,
- "doppioni_fusi": 0,
+ "eventi_totali": 142,
+ "eventi_passati_eliminati": 8,
+ "doppioni_fusi": 1,
  "dettaglio": [
   {
    "id": 1,
    "nome": "Alexanderplatz Jazz Club",
    "fonte": "html_wix",
    "stato": "ok",
-   "estratti": 6,
-   "rimossi_vecchi": 6
+   "estratti": 5,
+   "rimossi_vecchi": 5
   },
   {
    "id": 2,
    "nome": "Auditorium Parco della Musica",
    "fonte": "html_apm",
    "stato": "ok",
-   "estratti": 13,
-   "rimossi_vecchi": 10
+   "estratti": 14,
+   "rimossi_vecchi": 12
   },
   {
    "id": 3,
@@ -59,7 +59,7 @@
    "fonte": "html_vinile",
    "stato": "ok",
    "estratti": 4,
-   "rimossi_vecchi": 4
+   "rimossi_vecchi": 3
   },
   {
    "id": 8,
@@ -89,7 +89,7 @@
    "nome": "Palazzo dello Sport (PalaEur)",
    "fonte": "html_romatoday",
    "stato": "ok",
-   "estratti": 2,
+   "estratti": 4,
    "rimossi_vecchi": 2
   },
   {
@@ -97,8 +97,8 @@
    "nome": "Alcazar Live",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 4,
-   "rimossi_vecchi": 4
+   "estratti": 3,
+   "rimossi_vecchi": 3
   },
   {
    "id": 13,
@@ -135,15 +135,15 @@
    "fonte": "html_zero",
    "stato": "ok",
    "estratti": 9,
-   "rimossi_vecchi": 9
+   "rimossi_vecchi": 8
   },
   {
    "id": 18,
    "nome": "Fanfulla 5/a",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 27,
-   "rimossi_vecchi": 27
+   "estratti": 26,
+   "rimossi_vecchi": 26
   },
   {
    "id": 19,
@@ -157,7 +157,7 @@
    "nome": "Traffic Live",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 1,
+   "estratti": 2,
    "rimossi_vecchi": 1
   },
   {
@@ -188,8 +188,8 @@
    "nome": "Trenta Formiche",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 7,
-   "rimossi_vecchi": 7
+   "estratti": 19,
+   "rimossi_vecchi": 6
   }
  ]
 }
