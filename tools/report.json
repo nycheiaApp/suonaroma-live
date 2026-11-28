@@ -1,10 +1,10 @@
 {
- "eseguito_il": "2026-11-27T16:28:34+01:00",
+ "eseguito_il": "2026-11-28T16:59:33+01:00",
  "giorni_avanzo": 365,
  "locali_aggiornati": 16,
  "locali_totali": 24,
  "eventi_totali": 142,
- "eventi_passati_eliminati": 8,
+ "eventi_passati_eliminati": 10,
  "doppioni_fusi": 1,
  "dettaglio": [
   {
@@ -12,24 +12,24 @@
    "nome": "Alexanderplatz Jazz Club",
    "fonte": "html_wix",
    "stato": "ok",
-   "estratti": 5,
-   "rimossi_vecchi": 5
+   "estratti": 6,
+   "rimossi_vecchi": 4
   },
   {
    "id": 2,
    "nome": "Auditorium Parco della Musica",
    "fonte": "html_apm",
    "stato": "ok",
-   "estratti": 14,
-   "rimossi_vecchi": 12
+   "estratti": 15,
+   "rimossi_vecchi": 13
   },
   {
    "id": 3,
    "nome": "Casa del Jazz",
    "fonte": "html_cdj",
    "stato": "ok",
-   "estratti": 31,
-   "rimossi_vecchi": 31
+   "estratti": 30,
+   "rimossi_vecchi": 30
   },
   {
    "id": 4,
@@ -42,7 +42,7 @@
    "id": 5,
    "nome": "Fonclea",
    "fonte": null,
-   "stato": "fonte non disponibile (ical: 0 eventi; wp_json: saltato (non WordPress); jsonld: 0 eventi; html_testo: 0 eventi)",
+   "stato": "sito ufficiale protetto da verifica anti-bot (challenge JavaScript)",
    "estratti": 0
   },
   {
@@ -73,8 +73,8 @@
    "nome": "CrossRoads Live Club",
    "fonte": "ical",
    "stato": "ok",
-   "estratti": 14,
-   "rimossi_vecchi": 14
+   "estratti": 13,
+   "rimossi_vecchi": 13
   },
   {
    "id": 10,
@@ -90,15 +90,15 @@
    "fonte": "html_romatoday",
    "stato": "ok",
    "estratti": 4,
-   "rimossi_vecchi": 2
+   "rimossi_vecchi": 3
   },
   {
    "id": 12,
    "nome": "Alcazar Live",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 3,
-   "rimossi_vecchi": 3
+   "estratti": 1,
+   "rimossi_vecchi": 2
   },
   {
    "id": 13,
@@ -135,15 +135,15 @@
    "fonte": "html_zero",
    "stato": "ok",
    "estratti": 9,
-   "rimossi_vecchi": 8
+   "rimossi_vecchi": 9
   },
   {
    "id": 18,
    "nome": "Fanfulla 5/a",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 26,
-   "rimossi_vecchi": 26
+   "estratti": 29,
+   "rimossi_vecchi": 25
   },
   {
    "id": 19,
@@ -158,15 +158,15 @@
    "fonte": "html_zero",
    "stato": "ok",
    "estratti": 2,
-   "rimossi_vecchi": 1
+   "rimossi_vecchi": 2
   },
   {
    "id": 21,
    "nome": "Wishlist Club",
    "fonte": "html_zero",
    "stato": "ok",
-   "estratti": 4,
-   "rimossi_vecchi": 4
+   "estratti": 3,
+   "rimossi_vecchi": 3
   },
   {
    "id": 22,
@@ -180,7 +180,7 @@
    "id": 23,
    "nome": "L'Asino che Vola",
    "fonte": null,
-   "stato": "fonte non disponibile (ical: 0 eventi; wp_json: 0 eventi; jsonld: 0 eventi; html_testo: 0 eventi; html_zero: 0 eventi)",
+   "stato": "sito ufficiale protetto da verifica anti-bot (challenge JavaScript) · fonti alternative: html_zero: 0 eventi",
    "estratti": 0
   },
   {
@@ -189,7 +189,7 @@
    "fonte": "html_zero",
    "stato": "ok",
    "estratti": 19,
-   "rimossi_vecchi": 6
+   "rimossi_vecchi": 18
   }
  ]
 }
